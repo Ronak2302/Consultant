@@ -341,84 +341,86 @@
     }
 
     /* ─── Brands ────────────────────────────────────────────────── */
-    .brands-visual {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 16px;
-      margin: 40px auto;
-      max-width: 700px;
-    }
-    .brands-visual svg { width: 100%; max-width: 600px; height: auto; }
-    .brand-el {
-      padding: 12px 28px;
-      border-radius: 100px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      font-family: var(--font-display);
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--muted);
-      transition: all 0.3s;
-    }
-    .brand-el.active { border-color: var(--accent); color: var(--accent); }
-    .brands-flow {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      justify-content: center;
-      margin-top: 24px;
-    }
-    .brand-path {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      pointer-events: none;
-    }
-    .brands-visual-wrap {
-      position: relative;
-      min-height: 300px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
 
-    /* ─── About ─────────────────────────────────────────────────── */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 300px 1fr;
-      gap: 48px;
-      align-items: start;
-    }
-    .about-portrait {
-      width: 100%;
-      aspect-ratio: 1;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--surface) 0%, var(--bg) 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .about-portrait::before {
-      content: "";
-      position: absolute;
-      inset: -2px;
-      border-radius: 50%;
-      background: conic-gradient(from 0deg, var(--accent), transparent 40%, transparent 60%, var(--accent));
-      -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 1px));
-      mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 1px));
-      animation: rotate-ring 6s linear infinite;
-    }
-    @keyframes rotate-ring { to { transform: rotate(360deg); } }
-    .about-portrait-inner {
-      font-family: var(--font-display);
-      font-size: 56px;
-      font-weight: 700;
-      color: var(--fg);
-      letter-spacing: -0.03em;
-    }
+.brands-wall {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  max-width: 900px;
+  margin: 60px auto 40px;
+}
+
+.brand-pill {
+  padding: 14px 28px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.brand-pill:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.brands-summary {
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+  margin-top: 60px;
+  text-align: center;
+}
+
+.summary-stat {
+  color: var(--meta);
+  font-size: 14px;
+}
+
+.summary-stat span {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 42px;
+  font-weight: 700;
+  color: var(--fg);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+   /* ─── About ─────────────────────────────────────────────────── */
+   .about-grid {
+    display: grid;
+    grid-template-columns: 380px minmax(0, 1fr);
+    gap: 64px;
+    align-items: center;
+}
+
+.about-portrait {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.portrait-img {
+    width: 320px;
+    height: 320px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid var(--accent);
+}
+@keyframes rotate-ring { to { transform: rotate(360deg); } }
+.about-portrait-inner {
+  font-family: var(--font-display);
+  font-size: 56px;
+  font-weight: 700;
+  color: var(--fg);
+  letter-spacing: -0.03em;
+}
     .about-name {
       font-family: var(--font-display);
       font-size: clamp(28px, 3vw, 36px);
@@ -536,7 +538,6 @@
     .footer-social {
       display: flex;
       gap: 12px;
-      12px;
     }
     .footer-social a {
       align-items: center;
@@ -664,23 +665,32 @@
     <div class="section-inner">
       <p class="section-label reveal">Brands I've Worked With</p>
       <h2 class="section-title reveal reveal-delay-1">Work That Moved the Needle</h2>
-      <div class="brands-visual">
-        <div class="brands-visual-wrap">
-          <!-- Simple SVG placeholder -->
-          <svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
-            <rect width="100%" height="100%" fill="none" stroke="var(--border)" stroke-width="1"/>
-            <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="var(--muted)" font-family="var(--font-display)" font-size="18">Brand logos would appear here</text>
-          </svg>
-        </div>
-        <div class="brand-el active">Pidilite</div>
-        <div class="brand-el">Unilever</div>
-        <div class="brand-el">General Mills</div>
-        <div class="brand-el">Perfetti Van Melle</div>
-        <div class="brand-el">Bunge</div>
-      </div>
-      <div class="brands-flow">
-        <div class="brand-path"></div>
-      </div>
+      <div class="brands-wall">
+
+  <div class="brand-pill">Pidilite</div>
+  <div class="brand-pill">Unilever</div>
+  <div class="brand-pill">General Mills</div>
+  <div class="brand-pill">Perfetti Van Melle</div>
+  <div class="brand-pill">Bunge</div>
+
+</div>
+
+<div class="brands-summary">
+  <div class="summary-stat">
+    <span>60+</span>
+    Brands
+  </div>
+
+  <div class="summary-stat">
+    <span>100+</span>
+    Campaigns
+  </div>
+
+  <div class="summary-stat">
+    <span>8+</span>
+    Years Experience
+  </div>
+</div>
     </div>
   </section>
 
@@ -689,21 +699,20 @@
     <div class="section-inner">
       <p class="section-label reveal">About Me</p>
       <div class="about-grid">
-        <div class="about-portrait">
-          <div class="about-portrait-inner">R</div>
-        </div>
-        <div>
-          <p class="about-name">Ronak Suresh</p>
-          <p class="about-role">Marketing Consultant · Brand Strategist</p>
+
+    <div class="about-portrait">
+        <img
+            src="https://raw.githubusercontent.com/Ronak2302/Consultant/main/Screenshot%202026-07-04%20220332.png"
+            alt="Ronak Suresh"
+            class="portrait-img">
+    </div>
+
+    <div class="about-content">
+        <p class="about-name">Ronak Suresh</p>
+        <p class="about-role">Marketing Consultant · Brand Strategist</p>
           <div class="about-text">
             <p>Helping founders and early-stage startups turn marketing complexity into clear growth opportunities. Combining strategic thinking with hands-on execution, the focus is on building marketing systems that drive measurable business outcomes rather than short-term activity.</p>
             <p>Grounded in experience across high-growth D2C brands and venture-backed startups, every engagement starts with understanding the market, the customer, and the barriers to growth. The result is a tailored strategy designed to create clarity, accelerate decision-making, and enable sustainable scale.</p>
-          </div>
-          <div class="about-stats">
-            <div class="about-stat">8+<span>years</span></div>
-            <div class="about-stat">60+<span>brands</span></div>
-            <div class="about-stat">100+<span>successful campaigns</span></div>
-            <div class="about-stat">22<span>% campaign growth</span></div>
           </div>
           <a href="https://www.linkedin.com/in/ronaksuresh23/" class="about-linkedin" target="_blank" rel="noopener">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
