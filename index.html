@@ -233,175 +233,218 @@
     }
 /* ─── Chaos to Clarity ──────────────────────────────────────── */
 
-.chaos-layout{
-  display:grid;
-  grid-template-columns:420px 1fr;
-  gap:80px;
-  align-items:center;
-  margin-top:40px;
+.chaos-layout {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 80px;
+  align-items: center;
+  margin-top: 48px;
 }
 
-.chaos-box{
-  position:relative;
-  height:240px;
-  border:1px solid rgba(212,175,55,.45);
-  border-radius:28px;
-  overflow:hidden;
+.chaos-box {
+  position: relative;
+  width: 100%;
+  height: 300px;
+
+  border: 2px solid var(--accent);
+  border-radius: 24px;
+
+  background: rgba(255,255,255,0.02);
+
+  overflow: hidden;
+
+  box-shadow:
+    inset 0 0 0 1px rgba(212,175,55,.08),
+    0 0 40px rgba(212,175,55,.05);
+}
+
+.chaos-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
 
   background:
-  radial-gradient(
-    circle at center,
-    rgba(212,175,55,.05),
-    transparent 70%
-  );
+    radial-gradient(
+      circle at center,
+      rgba(212,175,55,.08),
+      transparent 70%
+    );
+
+  pointer-events: none;
+}
+
+/* Floating Nodes */
+
+.floating-node {
+  position: absolute;
+
+  width: 60px;
+  height: 60px;
+
+  border-radius: 50%;
+
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.12);
+
+  backdrop-filter: blur(10px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.1;
+
+  color: rgba(255,255,255,.85);
+
+  z-index: 2;
+}
+
+/* Positioning */
+
+.n1 {
+  top: 20px;
+  left: 20px;
+  animation: float1 4s infinite alternate ease-in-out;
+}
+
+.n2 {
+  top: 20px;
+  right: 20px;
+  animation: float2 4.5s infinite alternate ease-in-out;
+}
+
+.n3 {
+  bottom: 20px;
+  left: 20px;
+  animation: float3 4s infinite alternate ease-in-out;
+}
+
+.n4 {
+  bottom: 20px;
+  right: 20px;
+  animation: float4 4.5s infinite alternate ease-in-out;
+}
+
+.n5 {
+  top: 120px;
+  left: 15px;
+  animation: float5 4s infinite alternate ease-in-out;
+}
+
+.n6 {
+  top: 120px;
+  right: 15px;
+  animation: float6 5s infinite alternate ease-in-out;
+}
+
+.n7 {
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: float7 4.5s infinite alternate ease-in-out;
+}
+
+.n8 {
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: float8 4s infinite alternate ease-in-out;
+}
+
+/* Strategy Core */
+
+.strategy-core {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  width: 90px;
+  height: 90px;
+
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background: var(--accent);
+  color: #000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  z-index: 1;
 
   box-shadow:
-  inset 0 0 0 1px rgba(212,175,55,.08),
-  0 0 40px rgba(212,175,55,.05);
-}
-
-/* Floating balls */
-
-.floating-node{
-  position:absolute;
-
-  width:52px;
-  height:52px;
-
-  border-radius:50%;
-
-  background:#1a1a1a;
-  border:1px solid rgba(255,255,255,.08);
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  font-size:10px;
-  font-weight:500;
-
-  color:rgba(255,255,255,.75);
-
-  backdrop-filter:blur(10px);
-
-  box-shadow:
-  inset 0 1px 0 rgba(255,255,255,.04),
-  0 8px 24px rgba(0,0,0,.25);
-}
-
-/* Initial positions */
-
-.n1{
-  top:20px;
-  left:30px;
-  animation:float1 3s infinite alternate ease-in-out;
-}
-
-.n2{
-  top:40px;
-  right:40px;
-  animation:float2 3.5s infinite alternate ease-in-out;
-}
-
-.n3{
-  top:120px;
-  left:20px;
-  animation:float3 3.2s infinite alternate ease-in-out;
-}
-
-.n4{
-  top:120px;
-  right:30px;
-  animation:float4 3.8s infinite alternate ease-in-out;
-}
-
-.n5{
-  bottom:20px;
-  left:70px;
-  animation:float5 3.4s infinite alternate ease-in-out;
-}
-
-.n6{
-  bottom:25px;
-  right:70px;
-  animation:float6 3.6s infinite alternate ease-in-out;
-}
-
-.n7{
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-
-  background:var(--accent);
-  color:#000;
-  font-weight:700;
-
-  width:72px;
-  height:72px;
-
-  animation:float7 2.8s infinite alternate ease-in-out;
-
-  box-shadow:
-  0 0 30px rgba(212,175,55,.25);
-}
-
-/* Faster movement */
-
-@keyframes float1{
-  from{transform:translate(0,0);}
-  to{transform:translate(35px,25px);}
-}
-
-@keyframes float2{
-  from{transform:translate(0,0);}
-  to{transform:translate(-40px,30px);}
-}
-
-@keyframes float3{
-  from{transform:translate(0,0);}
-  to{transform:translate(45px,-20px);}
-}
-
-@keyframes float4{
-  from{transform:translate(0,0);}
-  to{transform:translate(-35px,-25px);}
-}
-
-@keyframes float5{
-  from{transform:translate(0,0);}
-  to{transform:translate(30px,-30px);}
-}
-
-@keyframes float6{
-  from{transform:translate(0,0);}
-  to{transform:translate(-30px,-25px);}
-}
-
-@keyframes float7{
-  from{
-    transform:translate(-50%,-50%);
-  }
-  to{
-    transform:translate(-50%,-60%);
-  }
+    0 0 40px rgba(212,175,55,.25),
+    0 0 80px rgba(212,175,55,.15);
 }
 
 /* Content */
 
-.chaos-title{
-  font-family:var(--font-display);
-  font-size:clamp(38px,4vw,54px);
-  font-weight:700;
-  line-height:1.05;
-  letter-spacing:-0.03em;
-  margin-bottom:24px;
+.chaos-title {
+  font-family: var(--font-display);
+  font-size: clamp(34px, 4vw, 52px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 24px;
 }
 
-.chaos-text{
-  font-size:18px;
-  line-height:1.8;
-  color:var(--muted);
-  margin-bottom:18px;
+.chaos-text {
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+/* Animations */
+
+@keyframes float1 {
+  from { transform: translate(0,0); }
+  to { transform: translate(25px,20px); }
+}
+
+@keyframes float2 {
+  from { transform: translate(0,0); }
+  to { transform: translate(-25px,20px); }
+}
+
+@keyframes float3 {
+  from { transform: translate(0,0); }
+  to { transform: translate(25px,-20px); }
+}
+
+@keyframes float4 {
+  from { transform: translate(0,0); }
+  to { transform: translate(-25px,-20px); }
+}
+
+@keyframes float5 {
+  from { transform: translate(0,0); }
+  to { transform: translate(20px,-15px); }
+}
+
+@keyframes float6 {
+  from { transform: translate(0,0); }
+  to { transform: translate(-20px,15px); }
+}
+
+@keyframes float7 {
+  from { transform: translateX(-50%) translateY(0); }
+  to { transform: translateX(-50%) translateY(20px); }
+}
+
+@keyframes float8 {
+  from { transform: translateX(-50%) translateY(0); }
+  to { transform: translateX(-50%) translateY(-20px); }
 }
 
    /* ─── Framework ────────────────────────────────────────────────── */
@@ -778,31 +821,40 @@
 
   /* ---------- Chaos ---------- */
 
-  .chaos-layout {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
+.chaos-layout {
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
 
-  .chaos-box {
-    width: 100%;
-    max-width: 420px;
-    margin: 0 auto;
-    height: 220px;
-  }
+.chaos-box {
+  max-width: 340px;
+  height: 240px;
+  margin: 0 auto;
+}
 
-  .chaos-content {
-    text-align: center;
-  }
+.chaos-content {
+  text-align: center;
+}
 
-  .chaos-title {
-    font-size: 36px;
-    margin-bottom: 20px;
-  }
+.chaos-title {
+  font-size: 32px;
+}
 
-  .chaos-text {
-    font-size: 16px;
-    line-height: 1.8;
-  }
+.chaos-text {
+  font-size: 16px;
+}
+
+.floating-node {
+  width: 46px;
+  height: 46px;
+  font-size: 8px;
+}
+
+.strategy-core {
+  width: 72px;
+  height: 72px;
+  font-size: 11px;
+}
 
   /* ---------- Framework ---------- */
 
@@ -1036,6 +1088,7 @@
     <div class="chaos-layout">
 
       <!-- LEFT VISUAL -->
+
       <div class="chaos-box">
 
         <div class="floating-node n1">Brand</div>
@@ -1044,11 +1097,17 @@
         <div class="floating-node n4">Social</div>
         <div class="floating-node n5">Data</div>
         <div class="floating-node n6">Audience</div>
-        <div class="floating-node n7">Strategy</div>
+        <div class="floating-node n7">Positioning</div>
+        <div class="floating-node n8">AI</div>
+
+        <div class="strategy-core">
+          Strategy
+        </div>
 
       </div>
 
       <!-- RIGHT CONTENT -->
+
       <div class="chaos-content">
 
         <h2 class="chaos-title">
