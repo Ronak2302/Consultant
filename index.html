@@ -744,6 +744,22 @@
     padding: 8px 12px;
   }
 
+  @media (max-width: 480px) {
+
+  .nav-links {
+    gap: 8px;
+  }
+
+  .nav-link {
+    font-size: 12px;
+  }
+
+  .nav-cta {
+    padding: 7px 10px;
+    font-size: 11px;
+  }
+
+
   /* ---------- Hero ---------- */
 
   .hero {
@@ -900,8 +916,15 @@
   }
 
   .about-linkedin {
-    margin: 0 auto;
-  }
+  display: inline-flex;
+  margin: 0 auto;
+}
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
   /* ---------- CTA ---------- */
 
@@ -922,24 +945,30 @@
 
   /* ---------- Footer ---------- */
 
-  .footer-inner {
-    flex-direction: column;
-    text-align: center;
-    gap: 16px;
-  }
+.footer-inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  text-align: center;
+  gap: 16px;
+}
 
-  .footer-info {
-    flex-direction: column;
-    gap: 8px;
-  }
+.footer-brand {
+  justify-self: center;
+}
 
-  .footer-info span {
-    display: none;
-  }
+.footer-info {
+  flex-direction: column;
+  justify-self: center;
+  gap: 8px;
+}
 
-  .footer-social {
-    justify-content: center;
-  }
+.footer-info span {
+  display: none;
+}
+
+.footer-social {
+  justify-self: center;
+}
 
 }
   </style>
