@@ -694,7 +694,7 @@
 .footer-social a:hover {
   color: var(--fg);
 }
-  /* =====================================================
+ /* =====================================================
    MOBILE OPTIMIZATION
 ===================================================== */
 
@@ -707,16 +707,13 @@
     padding-right: 24px;
   }
 
-  .section-label {
-    text-align: center;
-  }
-
-  .section-title {
+  .section-label,
+  .section-title,
+  .section-desc {
     text-align: center;
   }
 
   .section-desc {
-    text-align: center;
     margin-left: auto;
     margin-right: auto;
   }
@@ -744,22 +741,6 @@
     padding: 8px 12px;
   }
 
-  @media (max-width: 480px) {
-
-  .nav-links {
-    gap: 8px;
-  }
-
-  .nav-link {
-    font-size: 12px;
-  }
-
-  .nav-cta {
-    padding: 7px 10px;
-    font-size: 11px;
-  }
-
-
   /* ---------- Hero ---------- */
 
   .hero {
@@ -768,23 +749,19 @@
     padding-bottom: 80px;
   }
 
+  .hero-tagline {
+    font-size: clamp(10px, 2.8vw, 13px);
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+
   .hero-headline {
     font-size: clamp(38px, 10vw, 54px);
     line-height: 1.05;
   }
-  
-  .hero-tagline {
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  white-space: nowrap;
-}
 
   .hero-followup {
     margin-top: 12px;
-  }
-
-  .hero-sub {
-    font-size: 17px;
   }
 
   .hero-actions {
@@ -795,7 +772,7 @@
 
   .hero-actions .btn {
     width: 100%;
-    max-width: 320px;
+    max-width: 260px;
     text-align: center;
   }
 
@@ -874,6 +851,7 @@
   .brands-wall {
     gap: 12px;
     margin-top: 40px;
+    justify-content: center;
   }
 
   .brand-pill {
@@ -885,6 +863,10 @@
     flex-direction: column;
     gap: 28px;
     margin-top: 48px;
+  }
+
+  .summary-stat {
+    text-align: center;
   }
 
   .summary-stat span {
@@ -910,6 +892,9 @@
 
   .about-content {
     max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .about-text p {
@@ -922,15 +907,9 @@
   }
 
   .about-linkedin {
-  display: inline-flex;
-  margin: 0 auto;
-}
-
-.about-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+    display: inline-flex;
+    margin: 0 auto;
+  }
 
   /* ---------- CTA ---------- */
 
@@ -951,31 +930,67 @@
 
   /* ---------- Footer ---------- */
 
-.footer-inner {
-  display: grid;
-  grid-template-columns: 1fr;
-  text-align: center;
-  gap: 16px;
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 16px;
+  }
+
+  .footer-brand {
+    justify-self: center;
+  }
+
+  .footer-info {
+    flex-direction: column;
+    justify-self: center;
+    gap: 8px;
+  }
+
+  .footer-info span {
+    display: none;
+  }
+
+  .footer-social {
+    justify-self: center;
+  }
 }
 
-.footer-brand {
-  justify-self: center;
-}
+/* =====================================================
+   SMALL PHONES
+===================================================== */
 
-.footer-info {
-  flex-direction: column;
-  justify-self: center;
-  gap: 8px;
-}
+@media (max-width: 480px) {
 
-.footer-info span {
-  display: none;
-}
+  .nav-links {
+    gap: 8px;
+  }
 
-.footer-social {
-  justify-self: center;
-}
+  .nav-link {
+    font-size: 12px;
+  }
 
+  .nav-cta {
+    font-size: 11px;
+    padding: 7px 10px;
+  }
+
+  .hero-headline {
+    font-size: clamp(34px, 10vw, 44px);
+  }
+
+  .framework-heading {
+    font-size: 36px;
+  }
+
+  .chaos-title {
+    font-size: 30px;
+  }
+
+  .portrait-img {
+    width: 220px;
+    height: 220px;
+  }
 }
   </style>
 </head>
