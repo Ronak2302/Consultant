@@ -404,21 +404,6 @@
   margin-bottom:18px;
 }
 
-/* Mobile */
-
-@media (max-width:900px){
-
-  .chaos-layout{
-    grid-template-columns:1fr;
-    gap:40px;
-  }
-
-  .chaos-box{
-    max-width:420px;
-    width:100%;
-    margin:0 auto;
-  }
-}
    /* ─── Framework ────────────────────────────────────────────────── */
     .framework-layout {
     display: grid;
@@ -696,6 +681,245 @@
     @media (max-width: 600px) {
       .footer-inner { flex-direction: column; text-align: center; gap: 12px; }
     }
+  /* =====================================================
+   MOBILE OPTIMIZATION
+===================================================== */
+
+@media (max-width: 768px) {
+
+  /* ---------- General ---------- */
+
+  .section-inner {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .section-label {
+    text-align: center;
+  }
+
+  .section-title {
+    text-align: center;
+  }
+
+  .section-desc {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ---------- Navigation ---------- */
+
+  nav {
+    padding: 12px 20px;
+  }
+
+  .nav-brand {
+    font-size: 16px;
+  }
+
+  .nav-links {
+    gap: 10px;
+  }
+
+  .nav-link {
+    font-size: 13px;
+  }
+
+  .nav-cta {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+
+  /* ---------- Hero ---------- */
+
+  .hero {
+    min-height: 90vh;
+    padding-top: 120px;
+    padding-bottom: 80px;
+  }
+
+  .hero-headline {
+    font-size: clamp(38px, 10vw, 54px);
+    line-height: 1.05;
+  }
+
+  .hero-followup {
+    margin-top: 12px;
+  }
+
+  .hero-sub {
+    font-size: 17px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    max-width: 320px;
+    text-align: center;
+  }
+
+  /* ---------- Chaos ---------- */
+
+  .chaos-layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .chaos-box {
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    height: 220px;
+  }
+
+  .chaos-content {
+    text-align: center;
+  }
+
+  .chaos-title {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+
+  .chaos-text {
+    font-size: 16px;
+    line-height: 1.8;
+  }
+
+  /* ---------- Framework ---------- */
+
+  .framework-layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    margin-top: 40px;
+  }
+
+  .framework-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .framework-step {
+    font-size: 18px;
+    padding: 10px 16px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--muted);
+  }
+
+  .framework-step.active {
+    background: var(--accent);
+    color: var(--accent-on);
+    border-color: var(--accent);
+  }
+
+  .framework-panel {
+    text-align: center;
+  }
+
+  .framework-heading {
+    font-size: 42px;
+  }
+
+  .framework-description {
+    font-size: 16px;
+    line-height: 1.8;
+  }
+
+  /* ---------- Brands ---------- */
+
+  .brands-wall {
+    gap: 12px;
+    margin-top: 40px;
+  }
+
+  .brand-pill {
+    font-size: 14px;
+    padding: 12px 20px;
+  }
+
+  .brands-summary {
+    flex-direction: column;
+    gap: 28px;
+    margin-top: 48px;
+  }
+
+  .summary-stat span {
+    font-size: 34px;
+  }
+
+  /* ---------- About ---------- */
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+
+  .about-portrait {
+    justify-content: center;
+  }
+
+  .portrait-img {
+    width: 240px;
+    height: 240px;
+  }
+
+  .about-content {
+    max-width: 100%;
+  }
+
+  .about-text p {
+    font-size: 15px;
+  }
+
+  .about-stats {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .about-linkedin {
+    margin: 0 auto;
+  }
+
+  /* ---------- CTA ---------- */
+
+  .cta-section {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .cta-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cta-actions .btn {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  /* ---------- Footer ---------- */
+
+  .footer-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
+  }
+
+  .footer-social {
+    justify-content: center;
+  }
+
+}
   </style>
 </head>
 <body>
