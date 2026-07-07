@@ -43,35 +43,84 @@
     }
     ::selection { background: var(--accent); color: var(--accent-on); }
 
-    /* ─── Utilities ─────────────────────────────────────────────── */
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 var(--space); }
-    .section-label {
-      font-family: var(--font-body);
-      font-size: 13px;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 16px;
-    }
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-delay-1 { transition-delay: 0.1s; }
-    .reveal-delay-2 { transition-delay: 0.2s; }
-    .reveal-delay-3 { transition-delay: 0.3s; }
-    .reveal-delay-4 { transition-delay: 0.4s; }
-    .reveal-delay-5 { transition-delay: 0.5s; }
-    @media (prefers-reduced-motion: reduce) {
-      .reveal { opacity: 1; transform: none; transition: none; }
-    }
-    .accent-dot {
-  color: var(--accent);
+   /* ─── Utilities ─────────────────────────────────────────────── */
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space);
 }
 
+.section-label {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+/* Apple-style Reveal Animation */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(60px);
+  filter: blur(10px);
+
+  transition:
+    opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1.2s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+
+  will-change: opacity, transform, filter;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* Staggered delays */
+
+.reveal-delay-1 {
+  transition-delay: 0.1s;
+}
+
+.reveal-delay-2 {
+  transition-delay: 0.2s;
+}
+
+.reveal-delay-3 {
+  transition-delay: 0.3s;
+}
+
+.reveal-delay-4 {
+  transition-delay: 0.4s;
+}
+
+.reveal-delay-5 {
+  transition-delay: 0.5s;
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+}
+
+/* Brand Accent */
+
+.accent-dot {
+  color: var(--accent);
+}
     /* ─── Navigation ────────────────────────────────────────────── */
     nav {
       position: fixed; top: 0; left: 0; right: 0;
@@ -127,110 +176,253 @@
     }
 
     /* ─── Hero ──────────────────────────────────────────────────── */
-    .hero {
-      min-height: 100dvh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: var(--section-y) var(--space);
-      position: relative;
-      overflow: hidden;
-    }
-    .hero::after {
-      content: "";
-      position: absolute;
-      top: 50%; left: 50%;
-      width: 80vmax; height: 80vmax;
-      background: radial-gradient(circle at center, rgba(212,175,55,0.04) 0%, transparent 60%);
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-    }
-    .hero-content { position: relative; z-index: 1; max-width: 900px; }
-    .hero-tagline {
-      font-family: var(--font-body);
-      font-size: 14px;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 32px;
-    }
-    .hero-headline {
-  font-family: var(--font-display);
-  font-size: clamp(48px, 6vw, 84px);
-  font-weight: 700;
-  line-height: 1.05;
-  letter-spacing: -0.04em;
-  color: var(--fg);
-  max-width: 1200px;
-  margin: 0 auto 40px;
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  padding: var(--section-y) var(--space);
+
+  position: relative;
+  overflow: hidden;
 }
 
-.hero-accent {
-  color: var(--accent);
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at 50% 40%,
+      rgba(212,175,55,0.08),
+      transparent 60%
+    );
+
+  z-index: 0;
 }
+
+.hero::after {
+  content: "";
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  width: 80vmax;
+  height: 80vmax;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(212,175,55,0.04) 0%,
+      transparent 65%
+    );
+
+  transform: translate(-50%, -50%);
+
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1100px;
+}
+
+.hero-tagline {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 32px;
+
+  opacity: 0;
+  transform: translateY(40px);
+  filter: blur(8px);
+
+  animation: heroReveal 1.2s cubic-bezier(.22,1,.36,1) forwards;
+}
+
+.hero-headline {
+  font-family: var(--font-display);
+  font-size: clamp(52px, 7vw, 96px);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.05em;
+
+  color: var(--fg);
+
+  max-width: 1200px;
+  margin: 0 auto;
+
+  text-wrap: balance;
+
+  opacity: 0;
+  transform: translateY(50px);
+  filter: blur(10px);
+
+  animation: heroReveal 1.2s cubic-bezier(.22,1,.36,1) forwards;
+  animation-delay: .15s;
+}
+
 .hero-followup {
   margin-top: 24px;
+  animation-delay: .3s;
 }
-    .hero-headline em { font-style: normal; color: var(--accent); }
-    .hero-sub {
-      font-size: clamp(17px, 2vw, 21px);
-      line-height: 1.6;
-      color: var(--muted);
-      max-width: 640px;
-      margin: 0 auto 40px;
-    }
-    .hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-    .btn {
-      padding: 14px 32px;
-      border-radius: 8px;
-      font-size: 15px;
-      font-weight: 500;
-      font-family: var(--font-body);
-      text-decoration: none;
-      transition: all 0.2s;
-      display: inline-block;
-    }
-    .btn-primary {
-      background: var(--accent);
-      color: var(--accent-on);
-    }
-    .btn-primary:hover { background: var(--accent-hover); }
-    .btn-primary:active { transform: scale(0.97); }
-    .btn-secondary {
-      background: transparent;
-      color: var(--fg);
-      border: 1px solid var(--border);
-    }
-    .btn-secondary:hover { border-color: var(--muted); }
-    .btn-secondary:active { transform: scale(0.97); }
 
-    /* ─── Generic section ───────────────────────────────────────── */
-    section {
-      padding: var(--section-y) 0;
-      position: relative;
-    }
-    section.alt { background: var(--surface); }
-    .section-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 var(--space);
-    }
-    .section-title {
-      font-family: var(--font-display);
-      font-size: clamp(28px, 4vw, 48px);
-      font-weight: 700;
-      line-height: 1.15;
-      letter-spacing: -0.02em;
-      margin-bottom: 20px;
-    }
-    .section-desc {
-      font-size: clamp(15px, 1.4vw, 18px);
-      line-height: 1.7;
-      color: var(--muted);
-      max-width: 680px;
-    }
+.hero-accent,
+.hero-headline em {
+  color: var(--accent);
+  font-style: normal;
+}
+
+.hero-sub {
+  max-width: 700px;
+
+  margin: 40px auto 0;
+
+  font-size: clamp(17px, 2vw, 21px);
+  line-height: 1.7;
+
+  color: var(--muted);
+
+  opacity: 0;
+  transform: translateY(50px);
+  filter: blur(10px);
+
+  animation: heroReveal 1.2s cubic-bezier(.22,1,.36,1) forwards;
+  animation-delay: .45s;
+}
+
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+
+  margin-top: 48px;
+
+  opacity: 0;
+  transform: translateY(50px);
+  filter: blur(10px);
+
+  animation: heroReveal 1.2s cubic-bezier(.22,1,.36,1) forwards;
+  animation-delay: .6s;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 220px;
+
+  padding: 14px 32px;
+
+  border-radius: 8px;
+
+  font-size: 15px;
+  font-weight: 500;
+  font-family: var(--font-body);
+
+  text-decoration: none;
+
+  transition:
+    transform .25s ease,
+    background .25s ease,
+    border-color .25s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--accent-on);
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--fg);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+  border-color: var(--muted);
+}
+
+.btn-primary:active,
+.btn-secondary:active {
+  transform: scale(.98);
+}
+
+@keyframes heroReveal {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+    filter: blur(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+   /* ─── Generic Section ───────────────────────────────────────── */
+
+section {
+  position: relative;
+  padding: var(--section-y) 0;
+}
+
+section.alt {
+  background: var(--surface);
+}
+
+.section-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 20px;
+
+  text-wrap: balance;
+}
+
+.section-desc {
+  font-size: clamp(16px, 1.4vw, 18px);
+  line-height: 1.8;
+  color: var(--muted);
+  max-width: 680px;
+}
+
+/* Apple-style reveal support */
+
+.section-title,
+.section-desc,
+.section-label {
+  will-change: transform, opacity;
+}
 /* ─── Chaos to Clarity ──────────────────────────────────────── */
 
 .chaos-layout {
@@ -241,21 +433,25 @@
   margin-top: 48px;
 }
 
+/* Container */
+
 .chaos-box {
   position: relative;
   width: 100%;
-  height: 300px;
+  height: 320px;
 
-  border: 2px solid var(--accent);
-  border-radius: 24px;
+  border: 2px solid rgba(212,175,55,.35);
+  border-radius: 28px;
 
-  background: rgba(255,255,255,0.02);
+  background: rgba(255,255,255,.02);
 
   overflow: hidden;
 
   box-shadow:
     inset 0 0 0 1px rgba(212,175,55,.08),
-    0 0 40px rgba(212,175,55,.05);
+    0 0 60px rgba(212,175,55,.08);
+
+  isolation: isolate;
 }
 
 .chaos-box::before {
@@ -267,7 +463,7 @@
     radial-gradient(
       circle at center,
       rgba(212,175,55,.08),
-      transparent 70%
+      transparent 75%
     );
 
   pointer-events: none;
@@ -278,15 +474,16 @@
 .floating-node {
   position: absolute;
 
-  width: 60px;
-  height: 60px;
+  width: 64px;
+  height: 64px;
 
   border-radius: 50%;
 
   background: rgba(255,255,255,.08);
   border: 1px solid rgba(255,255,255,.12);
 
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 
   display: flex;
   align-items: center;
@@ -295,64 +492,83 @@
   text-align: center;
 
   font-size: 10px;
-  font-weight: 500;
-  line-height: 1.1;
+  font-weight: 600;
+  line-height: 1.15;
 
-  color: rgba(255,255,255,.85);
+  color: rgba(255,255,255,.9);
 
-  z-index: 2;
+  z-index: 3;
+
+  box-shadow:
+    0 8px 24px rgba(0,0,0,.18);
+
+  will-change: transform;
 }
 
-/* Positioning */
+/* Top Left */
 
 .n1 {
-  top: 20px;
-  left: 20px;
-  animation: float1 4s infinite alternate ease-in-out;
+  top: 18px;
+  left: 18px;
+  animation: float1 5s ease-in-out infinite alternate;
 }
+
+/* Top Right */
 
 .n2 {
-  top: 20px;
-  right: 20px;
-  animation: float2 4.5s infinite alternate ease-in-out;
+  top: 18px;
+  right: 18px;
+  animation: float2 5.5s ease-in-out infinite alternate;
 }
+
+/* Bottom Left */
 
 .n3 {
-  bottom: 20px;
-  left: 20px;
-  animation: float3 4s infinite alternate ease-in-out;
+  bottom: 18px;
+  left: 18px;
+  animation: float3 5s ease-in-out infinite alternate;
 }
+
+/* Bottom Right */
 
 .n4 {
-  bottom: 20px;
-  right: 20px;
-  animation: float4 4.5s infinite alternate ease-in-out;
+  bottom: 18px;
+  right: 18px;
+  animation: float4 5.5s ease-in-out infinite alternate;
 }
+
+/* Middle Left */
 
 .n5 {
-  top: 120px;
-  left: 15px;
-  animation: float5 4s infinite alternate ease-in-out;
+  top: 128px;
+  left: 12px;
+  animation: float5 4.8s ease-in-out infinite alternate;
 }
+
+/* Middle Right */
 
 .n6 {
-  top: 120px;
-  right: 15px;
-  animation: float6 5s infinite alternate ease-in-out;
+  top: 128px;
+  right: 12px;
+  animation: float6 5.2s ease-in-out infinite alternate;
 }
+
+/* Top Center */
 
 .n7 {
-  top: 20px;
+  top: 18px;
   left: 50%;
   transform: translateX(-50%);
-  animation: float7 4.5s infinite alternate ease-in-out;
+  animation: float7 5s ease-in-out infinite alternate;
 }
 
+/* Bottom Center (AI) */
+
 .n8 {
-  bottom: 20px;
+  bottom: 18px;
   left: 50%;
   transform: translateX(-50%);
-  animation: float8 4s infinite alternate ease-in-out;
+  animation: float8 5s ease-in-out infinite alternate;
 }
 
 /* Strategy Core */
@@ -363,8 +579,8 @@
   top: 50%;
   left: 50%;
 
-  width: 90px;
-  height: 90px;
+  width: 96px;
+  height: 96px;
 
   transform: translate(-50%, -50%);
 
@@ -377,31 +593,41 @@
   align-items: center;
   justify-content: center;
 
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 700;
 
-  z-index: 1;
+  z-index: 2;
 
   box-shadow:
-    0 0 40px rgba(212,175,55,.25),
+    0 0 30px rgba(212,175,55,.35),
     0 0 80px rgba(212,175,55,.15);
 }
 
 /* Content */
 
+.chaos-content {
+  max-width: 700px;
+}
+
 .chaos-title {
   font-family: var(--font-display);
-  font-size: clamp(34px, 4vw, 52px);
+  font-size: clamp(36px, 4vw, 56px);
   font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.03em;
+
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+
   margin-bottom: 24px;
+
+  text-wrap: balance;
 }
 
 .chaos-text {
   color: var(--muted);
+
   font-size: 18px;
-  line-height: 1.8;
+  line-height: 1.9;
+
   margin-bottom: 20px;
 }
 
@@ -409,282 +635,487 @@
 
 @keyframes float1 {
   from { transform: translate(0,0); }
-  to { transform: translate(25px,20px); }
+  to { transform: translate(20px,16px); }
 }
 
 @keyframes float2 {
   from { transform: translate(0,0); }
-  to { transform: translate(-25px,20px); }
+  to { transform: translate(-20px,16px); }
 }
 
 @keyframes float3 {
   from { transform: translate(0,0); }
-  to { transform: translate(25px,-20px); }
+  to { transform: translate(20px,-16px); }
 }
 
 @keyframes float4 {
   from { transform: translate(0,0); }
-  to { transform: translate(-25px,-20px); }
+  to { transform: translate(-20px,-16px); }
 }
 
 @keyframes float5 {
   from { transform: translate(0,0); }
-  to { transform: translate(20px,-15px); }
+  to { transform: translate(18px,-12px); }
 }
 
 @keyframes float6 {
   from { transform: translate(0,0); }
-  to { transform: translate(-20px,15px); }
+  to { transform: translate(-18px,12px); }
 }
 
 @keyframes float7 {
   from { transform: translateX(-50%) translateY(0); }
-  to { transform: translateX(-50%) translateY(20px); }
+  to { transform: translateX(-50%) translateY(18px); }
 }
 
 @keyframes float8 {
   from { transform: translateX(-50%) translateY(0); }
-  to { transform: translateX(-50%) translateY(-20px); }
+  to { transform: translateX(-50%) translateY(-18px); }
+}
+ /* ─── Framework ────────────────────────────────────────────────── */
+
+.framework-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 140px;
+
+  align-items: center;
+  margin-top: 72px;
 }
 
-   /* ─── Framework ────────────────────────────────────────────────── */
-    .framework-layout {
-    display: grid;
-    grid-template-columns: 260px 1fr;
-    gap: 120px;
-    margin-top: 64px;
-    align-items: center;
-}
+/* Left Navigation */
 
 .framework-nav {
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
 }
 
 .framework-step {
-    background: none;
-    border: none;
-    padding: 0;
+  background: none;
+  border: none;
+  padding: 0;
 
-    text-align: left;
+  text-align: left;
 
-    font-family: var(--font-display);
-    font-size: 42px;
-    font-weight: 700;
-    letter-spacing: -0.03em;
+  font-family: var(--font-display);
+  font-size: 44px;
+  font-weight: 700;
 
-    color: var(--meta);
-    cursor: pointer;
+  letter-spacing: -0.04em;
+  line-height: 1;
 
-    transition: all .3s ease;
+  color: var(--meta);
+
+  cursor: pointer;
+
+  transition:
+    color .35s ease,
+    transform .35s ease;
+
+  position: relative;
 }
 
 .framework-step:hover {
-    color: var(--fg);
+  color: var(--fg);
+  transform: translateX(6px);
 }
 
 .framework-step.active {
-    color: var(--accent);
+  color: var(--accent);
+  transform: translateX(10px);
 }
+
+/* Active indicator */
+
+.framework-step.active::before {
+  content: "";
+
+  position: absolute;
+
+  left: -24px;
+  top: 50%;
+
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  background: var(--accent);
+
+  transform: translateY(-50%);
+}
+
+/* Right Panel */
 
 .framework-panel {
-    max-width: 700px;
+  max-width: 760px;
 }
+
+/* Number */
 
 .framework-number {
-    font-size: 14px;
-    letter-spacing: .2em;
-    color: var(--accent);
-    margin-bottom: 20px;
+  font-size: 13px;
+  font-weight: 600;
+
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+
+  color: var(--accent);
+
+  margin-bottom: 24px;
 }
+
+/* Heading */
 
 .framework-heading {
-    font-family: var(--font-display);
-    font-size: clamp(56px, 6vw, 88px);
-    font-weight: 700;
-    line-height: 1;
-    margin-bottom: 24px;
+  font-family: var(--font-display);
+
+  font-size: clamp(60px, 7vw, 96px);
+  font-weight: 700;
+
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+
+  margin-bottom: 28px;
+
+  text-wrap: balance;
 }
 
+/* Description */
+
 .framework-description {
-    font-size: 20px;
-    line-height: 1.8;
-    color: var(--muted);
+  max-width: 680px;
+
+  font-size: 20px;
+  line-height: 1.9;
+
+  color: var(--muted);
 }
-    /* ─── Brands ────────────────────────────────────────────────── */
+
+/* Subtle fade animation when content changes */
+
+.framework-number,
+.framework-heading,
+.framework-description {
+  transition:
+    opacity .35s ease,
+    transform .35s ease;
+}
+ /* ─── Brands ────────────────────────────────────────────────── */
 
 .brands-wall {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 16px;
+
   max-width: 900px;
   margin: 60px auto 40px;
 }
 
 .brand-pill {
   padding: 14px 28px;
+
   border-radius: 999px;
   border: 1px solid var(--border);
+
   background: var(--bg);
   color: var(--fg);
+
   font-family: var(--font-display);
   font-size: 15px;
   font-weight: 500;
-  transition: all 0.3s ease;
+
+  transition:
+    transform .4s cubic-bezier(.22,1,.36,1),
+    border-color .4s cubic-bezier(.22,1,.36,1),
+    color .4s cubic-bezier(.22,1,.36,1),
+    background .4s cubic-bezier(.22,1,.36,1),
+    box-shadow .4s cubic-bezier(.22,1,.36,1);
 }
 
 .brand-pill:hover {
   border-color: var(--accent);
   color: var(--accent);
-  transform: translateY(-2px);
+
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 12px 30px rgba(0,0,0,.25),
+    0 0 20px rgba(212,175,55,.08);
 }
+
+/* Summary Stats */
 
 .brands-summary {
   display: flex;
   justify-content: center;
+  align-items: center;
+
   gap: 80px;
+
   margin-top: 60px;
+
   text-align: center;
 }
 
 .summary-stat {
   color: var(--meta);
   font-size: 14px;
+
+  transition:
+    transform .5s cubic-bezier(.22,1,.36,1),
+    color .3s ease;
+}
+
+.summary-stat:hover {
+  transform: translateY(-4px);
 }
 
 .summary-stat span {
   display: block;
+
   font-family: var(--font-display);
   font-size: 42px;
   font-weight: 700;
+
   color: var(--fg);
+
   line-height: 1;
   margin-bottom: 8px;
+
+  transition:
+    color .3s ease,
+    transform .4s cubic-bezier(.22,1,.36,1);
 }
 
-   /* ─── About ─────────────────────────────────────────────────── */
-   .about-grid {
-    display: grid;
-    grid-template-columns: 380px minmax(0, 1fr);
-    gap: 64px;
-    align-items: center;
+.summary-stat:hover span {
+  color: var(--accent);
+  transform: scale(1.04);
+}
+ /* ─── About ─────────────────────────────────────────────────── */
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 380px minmax(0, 1fr);
+  gap: 80px;
+  align-items: center;
 }
 
 .about-portrait {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .portrait-img {
-    width: 320px;
-    height: 320px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 4px solid var(--accent);
+  width: 320px;
+  height: 320px;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+  border: 4px solid var(--accent);
+
+  transition:
+    transform .6s cubic-bezier(.22,1,.36,1),
+    box-shadow .6s cubic-bezier(.22,1,.36,1);
 }
-@keyframes rotate-ring { to { transform: rotate(360deg); } }
+
+.portrait-img:hover {
+  transform: scale(1.03);
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.35),
+    0 0 30px rgba(212,175,55,.12);
+}
+
 .about-portrait-inner {
   font-family: var(--font-display);
   font-size: 56px;
   font-weight: 700;
-  color: var(--fg);
   letter-spacing: -0.03em;
+  color: var(--fg);
 }
-    .about-name {
-      font-family: var(--font-display);
-      font-size: clamp(28px, 3vw, 36px);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 8px;
-    }
-    .about-role {
-      font-size: 16px;
-      color: var(--accent);
-      margin-bottom: 20px;
-    }
-    .about-text p {
-      font-size: 16px;
-      line-height: 1.7;
-      color: var(--muted);
-      margin-bottom: 16px;
-    }
-    .about-stats {
-      display: flex;
-      gap: 32px;
-      margin: 24px 0;
-    }
-    .about-stat {
-      font-family: var(--font-display);
-      font-size: 28px;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      color: var(--fg);
-    }
-    .about-stat span {
-      display: block;
-      font-family: var(--font-body);
-      font-size: 13px;
-      font-weight: 400;
-      color: var(--meta);
-      letter-spacing: 0;
-      margin-top: 4px;
-    }
-    .about-linkedin {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 28px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      color: var(--fg);
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 500;
-      transition: border-color 0.2s;
-    }
-    .about-linkedin:hover { border-color: var(--muted); }
-    .about-linkedin svg { width: 18px; height: 18px; flex-shrink: 0; }
-    @media (max-width: 768px) {
-      .about-grid { grid-template-columns: 1fr; text-align: center; }
-      .about-portrait { max-width: 200px; margin: 0 auto; }
-      .about-stats { justify-content: center; }
-    }
 
-    /* ─── CTA ───────────────────────────────────────────────────── */
-    .cta-section {
-      text-align: center;
-      padding: var(--section-y) var(--space);
-    }
-    .cta-statement {
-      font-family: var(--font-display);
-      font-size: clamp(28px, 4vw, 48px);
-      font-weight: 700;
-      line-height: 1.2;
-      letter-spacing: -0.02em;
-      margin-bottom: 12px;
-    }
-    .cta-statement em {
-      font-style: normal;
-      color: var(--accent);
-    }
-    .cta-sub {
-      font-size: clamp(15px, 1.4vw, 18px);
-      color: var(--muted);
-      margin-bottom: 40px;
-    }
-    .cta-actions {
+.about-name {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3vw, 36px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+
+  margin-bottom: 8px;
+}
+
+.about-role {
+  font-size: 16px;
+  color: var(--accent);
+
+  margin-bottom: 24px;
+
+  letter-spacing: .03em;
+}
+
+.about-text p {
+  font-size: 16px;
+  line-height: 1.8;
+
+  color: var(--muted);
+
+  margin-bottom: 18px;
+}
+
+.about-stats {
   display: flex;
-  gap: 16px;
+  gap: 40px;
+
+  margin: 32px 0;
+}
+
+.about-stat {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+
+  color: var(--fg);
+
+  transition:
+    transform .4s cubic-bezier(.22,1,.36,1),
+    color .3s ease;
+}
+
+.about-stat:hover {
+  transform: translateY(-3px);
+}
+
+.about-stat:hover span {
+  color: var(--accent);
+}
+
+.about-stat span {
+  display: block;
+
+  margin-top: 4px;
+
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 400;
+
+  color: var(--meta);
+
+  transition: color .3s ease;
+}
+
+.about-linkedin {
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
+
+  gap: 10px;
+
+  width: 240px;
+  height: 52px;
+
+  border: 1px solid var(--border);
+  border-radius: 8px;
+
+  color: var(--fg);
+  text-decoration: none;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  transition:
+    transform .3s cubic-bezier(.22,1,.36,1),
+    border-color .3s ease,
+    background .3s ease;
+}
+
+.about-linkedin:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.about-linkedin svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+ /* ─── CTA ───────────────────────────────────────────────────── */
+
+.cta-section {
+  text-align: center;
+  padding: var(--section-y) var(--space);
+}
+
+.cta-statement {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 700;
+
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+
+  margin-bottom: 16px;
+
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-statement em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.cta-sub {
+  font-size: clamp(15px, 1.4vw, 18px);
+  color: var(--muted);
+
+  max-width: 600px;
+
+  margin: 0 auto 40px;
+}
+
+.cta-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 16px;
   flex-wrap: wrap;
 }
 
 .cta-actions .btn {
   width: 240px;
+  height: 52px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   text-align: center;
+
+  transition:
+    transform .3s cubic-bezier(.22,1,.36,1),
+    box-shadow .3s cubic-bezier(.22,1,.36,1),
+    border-color .3s ease,
+    background .3s ease;
+}
+
+.cta-actions .btn:hover {
+  transform: translateY(-2px);
+}
+
+.cta-actions .btn-primary:hover {
+  box-shadow:
+    0 12px 30px rgba(212,175,55,.18);
+}
+
+.cta-actions .btn-secondary:hover {
+  border-color: var(--accent);
 }
     /* ─── Footer ────────────────────────────────────────────────── */
    .footer-inner {
@@ -761,6 +1192,10 @@
     margin-right: auto;
   }
 
+  section {
+    padding: 80px 0;
+  }
+
   /* ---------- Navigation ---------- */
 
   nav {
@@ -792,19 +1227,26 @@
     padding-bottom: 80px;
   }
 
+  .hero-content {
+    max-width: 100%;
+  }
+
   .hero-tagline {
     font-size: clamp(10px, 2.8vw, 13px);
     letter-spacing: 0.08em;
     white-space: nowrap;
+    text-align: center;
+    margin-bottom: 24px;
   }
 
   .hero-headline {
     font-size: clamp(38px, 10vw, 54px);
     line-height: 1.05;
+    margin-bottom: 20px;
   }
 
   .hero-followup {
-    margin-top: 12px;
+    margin-top: 8px;
   }
 
   .hero-actions {
@@ -816,45 +1258,47 @@
   .hero-actions .btn {
     width: 100%;
     max-width: 260px;
-    text-align: center;
   }
 
   /* ---------- Chaos ---------- */
 
-.chaos-layout {
-  grid-template-columns: 1fr;
-  gap: 40px;
-}
+  .chaos-layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
 
-.chaos-box {
-  max-width: 340px;
-  height: 240px;
-  margin: 0 auto;
-}
+  .chaos-box {
+    width: 100%;
+    max-width: 340px;
+    height: 240px;
+    margin: 0 auto;
+  }
 
-.chaos-content {
-  text-align: center;
-}
+  .chaos-content {
+    text-align: center;
+  }
 
-.chaos-title {
-  font-size: 32px;
-}
+  .chaos-title {
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
 
-.chaos-text {
-  font-size: 16px;
-}
+  .chaos-text {
+    font-size: 16px;
+    line-height: 1.8;
+  }
 
-.floating-node {
-  width: 46px;
-  height: 46px;
-  font-size: 8px;
-}
+  .floating-node {
+    width: 46px;
+    height: 46px;
+    font-size: 8px;
+  }
 
-.strategy-core {
-  width: 72px;
-  height: 72px;
-  font-size: 11px;
-}
+  .strategy-core {
+    width: 72px;
+    height: 72px;
+    font-size: 11px;
+  }
 
   /* ---------- Framework ---------- */
 
@@ -872,10 +1316,12 @@
   }
 
   .framework-step {
-    font-size: 18px;
+    font-size: 16px;
     padding: 10px 16px;
+
     border: 1px solid var(--border);
     border-radius: 999px;
+
     color: var(--muted);
   }
 
@@ -889,8 +1335,13 @@
     text-align: center;
   }
 
+  .framework-number {
+    margin-bottom: 12px;
+  }
+
   .framework-heading {
     font-size: 42px;
+    margin-bottom: 20px;
   }
 
   .framework-description {
@@ -901,14 +1352,14 @@
   /* ---------- Brands ---------- */
 
   .brands-wall {
+    justify-content: center;
     gap: 12px;
     margin-top: 40px;
-    justify-content: center;
   }
 
   .brand-pill {
-    font-size: 14px;
     padding: 12px 20px;
+    font-size: 14px;
   }
 
   .brands-summary {
@@ -949,13 +1400,20 @@
     align-items: center;
   }
 
-  .about-text p {
-    font-size: 15px;
+  .about-name {
+    text-align: center;
   }
 
-  .about-stats {
-    justify-content: center;
-    flex-wrap: wrap;
+  .about-role {
+    text-align: center;
+  }
+
+  .about-text {
+    text-align: center;
+  }
+
+  .about-text p {
+    font-size: 15px;
   }
 
   .about-linkedin {
@@ -985,8 +1443,8 @@
   .footer-inner {
     display: grid;
     grid-template-columns: 1fr;
-    text-align: center;
     gap: 16px;
+    text-align: center;
   }
 
   .footer-brand {
@@ -1008,11 +1466,14 @@
   }
 }
 
+
 /* =====================================================
    SMALL PHONES
 ===================================================== */
 
 @media (max-width: 480px) {
+
+  /* ---------- Navigation ---------- */
 
   .nav-links {
     gap: 8px;
@@ -1027,69 +1488,124 @@
     padding: 7px 10px;
   }
 
+  /* ---------- Hero ---------- */
+
+  .hero-tagline {
+    font-size: 10px;
+    letter-spacing: 0.04em;
+  }
+
   .hero-headline {
     font-size: clamp(34px, 10vw, 44px);
   }
+
+  /* ---------- Framework ---------- */
 
   .framework-heading {
     font-size: 36px;
   }
 
+  .framework-step {
+    font-size: 14px;
+    padding: 8px 14px;
+  }
+
+  /* ---------- Chaos ---------- */
+
   .chaos-title {
     font-size: 30px;
   }
+
+  .chaos-box {
+    max-width: 300px;
+    height: 220px;
+  }
+
+  .floating-node {
+    width: 42px;
+    height: 42px;
+    font-size: 7px;
+  }
+
+  .strategy-core {
+    width: 66px;
+    height: 66px;
+    font-size: 10px;
+  }
+
+  /* ---------- About ---------- */
 
   .portrait-img {
     width: 220px;
     height: 220px;
   }
+
+  /* ---------- Footer ---------- */
+
+  .footer-info a {
+    font-size: 13px;
+  }
+
+  .footer-social {
+    font-size: 13px;
+  }
 }
   </style>
 </head>
 <body>
+<!-- ═══ Navigation ════════════════════════════════════════════════ -->
+<nav id="nav">
+  <a href="#hero" class="nav-brand">
+    Ronak<span class="accent-dot">.</span>
+  </a>
 
-  <!-- ═══ Navigation ════════════════════════════════════════════════ -->
-  <nav id="nav">
-    <a href="#hero" class="nav-brand">
-  Ronak<span class="accent-dot">.</span>
-</a>
-    <div class="nav-links">
-      <button class="nav-link" data-target="chaos">Challenge</button>
-      <button class="nav-link" data-target="framework">Approach</button>
-      <button class="nav-link" data-target="about">About</button>
-      <a href="tel:+919136011996" class="nav-cta">Call Now</a>
-    </div>
-  </nav>
+  <div class="nav-links">
+    <button class="nav-link" data-target="chaos">Challenge</button>
+    <button class="nav-link" data-target="framework">Approach</button>
+    <button class="nav-link" data-target="about">About</button>
+    <a href="tel:+919136011996" class="nav-cta">Call Now</a>
+  </div>
+</nav>
 
-  <!-- ═══ Hero ══════════════════════════════════════════════════════ -->
-  <section class="hero" id="hero">
-    <div class="hero-content">
-      <p class="hero-tagline reveal visible">Marketing Consultant · Brand Strategist</p>
-      <h1 class="hero-headline">
-  Most brands don't have a
-  <br>
-  <span class="hero-accent">marketing problem.</span>
-</h1>
+<!-- ═══ Hero ══════════════════════════════════════════════════════ -->
 
-<h2 class="hero-headline hero-followup">
-  They have a
-  <br>
-  <span class="hero-accent">clarity problem.</span>
-</h2>
-    </div>
-  </section>
+<section class="hero" id="hero">
 
-  <!-- ═══ From Chaos to Clarity ══════════════════════════════════════ -->
-  <section class="alt" id="chaos">
+  <div class="hero-content">
+
+    <p class="hero-tagline reveal visible">
+      Marketing Consultant · Brand Strategist
+    </p>
+
+    <h1 class="hero-headline reveal visible">
+      Most brands don't have a
+      <br>
+      <span class="hero-accent">marketing problem.</span>
+    </h1>
+
+    <h2 class="hero-headline hero-followup reveal visible">
+      They have a
+      <br>
+      <span class="hero-accent">clarity problem.</span>
+    </h2>
+
+  </div>
+
+</section>
+
+<!-- ═══ From Chaos to Clarity ══════════════════════════════════════ -->
+
+<section class="alt" id="chaos">
+
   <div class="section-inner">
 
-    <p class="section-label">FROM CHAOS TO CLARITY</p>
+    <p class="section-label reveal">
+      FROM CHAOS TO CLARITY
+    </p>
 
     <div class="chaos-layout">
 
-      <!-- LEFT VISUAL -->
-
-      <div class="chaos-box">
+      <div class="chaos-box reveal reveal-delay-1">
 
         <div class="floating-node n1">Brand</div>
         <div class="floating-node n2">Content</div>
@@ -1106,22 +1622,20 @@
 
       </div>
 
-      <!-- RIGHT CONTENT -->
-
       <div class="chaos-content">
 
-        <h2 class="chaos-title">
+        <h2 class="chaos-title reveal reveal-delay-2">
           From disconnected tactics to a unified system.
         </h2>
 
-        <p class="chaos-text">
+        <p class="chaos-text reveal reveal-delay-3">
           Many brands focus on improving individual channels.
           The real advantage lies elsewhere: in building a marketing
           ecosystem where every channel reinforces the next, creating
           momentum that compounds over time.
         </p>
 
-        <p class="chaos-text">
+        <p class="chaos-text reveal reveal-delay-4">
           The strongest marketing systems are built on alignment.
           Every channel supports the next, every touchpoint serves
           a purpose and every interaction moves the customer closer
@@ -1133,33 +1647,33 @@
     </div>
 
   </div>
+
 </section>
-  <!-- ═══ Framework ════════════════════════════════════ -->
-  <section id="framework" class="framework">
+
+<!-- ═══ Framework ════════════════════════════════════ -->
+
+<section id="framework" class="framework">
+
   <div class="section-inner">
 
-    <p class="section-label">
+    <p class="section-label reveal">
       HOW I APPROACH GROWTH
     </p>
 
-    <h2 class="section-title">
+    <h2 class="section-title reveal reveal-delay-1">
       A Framework, Not a How-To.
     </h2>
 
     <div class="framework-layout">
 
-      <!-- LEFT NAVIGATION -->
-
-      <div class="framework-nav">
+      <div class="framework-nav reveal reveal-delay-2">
 
         <button
           class="framework-step active"
           data-title="Discover"
           data-number="01"
           data-description="Before strategies are built or channels are selected, the market, customer, and competitive dynamics are mapped in detail. This process reveals the underlying constraint limiting growth, creating clarity on where effort will generate the greatest impact.">
-
           Discover
-
         </button>
 
         <button
@@ -1167,9 +1681,7 @@
           data-title="Diagnose"
           data-number="02"
           data-description="The focus extends beyond metrics and channel performance. By examining how customers perceive the brand and interact across touchpoints, deeper insights emerge into what is driving results and what is holding them back.">
-
           Diagnose
-
         </button>
 
         <button
@@ -1177,9 +1689,7 @@
           data-title="Position"
           data-number="03"
           data-description="Marketing performs best when positioning is clear. By defining a distinct place in the market, the brand becomes the obvious choice for the right audience, making every campaign, message and investment work harder.">
-
           Position
-
         </button>
 
         <button
@@ -1187,9 +1697,7 @@
           data-title="Activate"
           data-number="04"
           data-description="Once the strategy is clear, execution becomes a matter of alignment. Content, media, social, partnerships and customer touchpoints are orchestrated around a single positioning.">
-
           Activate
-
         </button>
 
         <button
@@ -1197,16 +1705,12 @@
           data-title="Scale"
           data-number="05"
           data-description="Growth is not a one-time outcome but a continuous process of refinement. By measuring what matters, uncovering what drives results, and doubling down on high-leverage opportunities, momentum compounds over time.">
-
           Scale
-
         </button>
 
       </div>
 
-      <!-- RIGHT CONTENT -->
-
-      <div class="framework-panel">
+      <div class="framework-panel reveal reveal-delay-3">
 
         <div class="framework-number" id="frameworkNumber">
           01
@@ -1217,7 +1721,10 @@
         </h3>
 
         <p class="framework-description" id="frameworkDescription">
-          Before strategies are built or channels are selected, the market, customer, and competitive dynamics are mapped in detail. This process reveals the underlying constraint limiting growth, creating clarity on where effort will generate the greatest impact.
+          Before strategies are built or channels are selected, the market,
+          customer, and competitive dynamics are mapped in detail. This process
+          reveals the underlying constraint limiting growth, creating clarity on
+          where effort will generate the greatest impact.
         </p>
 
       </div>
@@ -1225,86 +1732,167 @@
     </div>
 
   </div>
+
 </section>
-  <!-- ═══ Brands ─────────────────────────────────────────────────── -->
-  <section class="alt" id="brands">
-    <div class="section-inner">
-      <p class="section-label reveal">Brands I've Worked With</p>
-      <h2 class="section-title reveal reveal-delay-1">Work That Moved the Needle</h2>
-      <div class="brands-wall">
 
-  <div class="brand-pill">Pidilite</div>
-  <div class="brand-pill">Unilever</div>
-  <div class="brand-pill">General Mills</div>
-  <div class="brand-pill">Perfetti Van Melle</div>
-  <div class="brand-pill">Bunge</div>
+<!-- ═══ Brands ═══════════════════════════════════════════════════ -->
 
-</div>
+<section class="alt" id="brands">
 
-<div class="brands-summary">
-  <div class="summary-stat">
-    <span>60+</span>
-    Brands
-  </div>
+  <div class="section-inner">
 
-  <div class="summary-stat">
-    <span>100+</span>
-    Campaigns
-  </div>
-
-  <div class="summary-stat">
-    <span>8+</span>
-    Years Experience
-  </div>
-</div>
-    </div>
-  </section>
-
-  <!-- ═══ About ─────────────────────────────────────────────────── -->
-  <section id="about">
-    <div class="section-inner">
-      <p class="section-label reveal">About Me</p>
-      <div class="about-grid">
-
-    <div class="about-portrait">
-        <img
-            src="https://raw.githubusercontent.com/Ronak2302/Consultant/main/Screenshot%202026-07-04%20220332.png"
-            alt="Ronak Suresh"
-            class="portrait-img">
-    </div>
-
-    <div class="about-content">
-        <p class="about-name">Ronak Suresh</p>
-        <p class="about-role">Marketing Consultant · Brand Strategist</p>
-          <div class="about-text">
-            <p>Helping founders and early-stage startups turn marketing complexity into clear growth opportunities. Combining strategic thinking with hands-on execution, the focus is on building marketing systems that drive measurable business outcomes rather than short-term activity.</p>
-            <p>Grounded in experience across high-growth D2C brands and venture-backed startups, every engagement starts with understanding the market, the customer, and the barriers to growth. The result is a tailored strategy designed to create clarity, accelerate decision-making, and enable sustainable scale.</p>
-          </div>
-          <a href="https://www.linkedin.com/in/ronaksuresh23/" class="about-linkedin" target="_blank" rel="noopener">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-            LinkedIn
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ CTA ───────────────────────────────────────────────────── -->
-  <section class="cta-section" id="ctaFinal">
-    <h2 class="cta-statement">
-      Ready to turn clarity into growth?
-    </h2>
-    <p class="cta-sub">
-      Book a consultation to see if we're a good fit.
+    <p class="section-label reveal">
+      Brands I've Worked With
     </p>
-    <div class="cta-actions">
-      <a href="https://calendly.com/ronak-s-tidal7/30min" class="btn btn-primary">Get in Touch</a>
-      <a href="https://www.linkedin.com/in/ronaksuresh23/" class="btn btn-secondary">Connect on LinkedIn</a>
-    </div>
-  </section>
 
-  <!-- ═══ Footer ════════════════════════════════════════════════════ -->
-  <footer>
+    <h2 class="section-title reveal reveal-delay-1">
+      Work That Moved the Needle
+    </h2>
+
+    <div class="brands-wall reveal reveal-delay-2">
+
+      <div class="brand-pill">Pidilite</div>
+      <div class="brand-pill">Unilever</div>
+      <div class="brand-pill">General Mills</div>
+      <div class="brand-pill">Perfetti Van Melle</div>
+      <div class="brand-pill">Bunge</div>
+
+    </div>
+
+    <div class="brands-summary reveal reveal-delay-3">
+
+      <div class="summary-stat">
+        <span>60+</span>
+        Brands
+      </div>
+
+      <div class="summary-stat">
+        <span>100+</span>
+        Campaigns
+      </div>
+
+      <div class="summary-stat">
+        <span>8+</span>
+        Years Experience
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ═══ About ═══════════════════════════════════════════════════ -->
+
+<section id="about">
+
+  <div class="section-inner">
+
+    <p class="section-label reveal">
+      About Me
+    </p>
+
+    <div class="about-grid">
+
+      <div class="about-portrait reveal reveal-delay-1">
+
+        <img
+          src="https://raw.githubusercontent.com/Ronak2302/Consultant/main/Screenshot%202026-07-04%20220332.png"
+          alt="Ronak Suresh"
+          class="portrait-img">
+
+      </div>
+
+      <div class="about-content reveal reveal-delay-2">
+
+        <p class="about-name">
+          Ronak Suresh
+        </p>
+
+        <p class="about-role">
+          Marketing Consultant · Brand Strategist
+        </p>
+
+        <div class="about-text">
+
+          <p>
+            Helping founders and early-stage startups turn marketing complexity
+            into clear growth opportunities. Combining strategic thinking with
+            hands-on execution, the focus is on building marketing systems that
+            drive measurable business outcomes rather than short-term activity.
+          </p>
+
+          <p>
+            Grounded in experience across high-growth D2C brands and
+            venture-backed startups, every engagement starts with understanding
+            the market, the customer, and the barriers to growth. The result is
+            a tailored strategy designed to create clarity, accelerate
+            decision-making, and enable sustainable scale.
+          </p>
+
+        </div>
+
+        <a
+          href="https://www.linkedin.com/in/ronaksuresh23/"
+          class="about-linkedin"
+          target="_blank"
+          rel="noopener">
+
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+            <rect x="2" y="9" width="4" height="12"></rect>
+            <circle cx="4" cy="4" r="2"></circle>
+          </svg>
+
+          LinkedIn
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ═══ CTA ═══════════════════════════════════════════════════ -->
+
+<section class="cta-section" id="ctaFinal">
+
+  <h2 class="cta-statement reveal">
+    Ready to turn clarity into growth?
+  </h2>
+
+  <p class="cta-sub reveal reveal-delay-1">
+    Book a consultation to see if we're a good fit.
+  </p>
+
+  <div class="cta-actions reveal reveal-delay-2">
+
+    <a
+      href="https://calendly.com/ronak-s-tidal7/30min"
+      class="btn btn-primary">
+      Get in Touch
+    </a>
+
+    <a
+      href="https://www.linkedin.com/in/ronaksuresh23/"
+      class="btn btn-secondary">
+      Connect on LinkedIn
+    </a>
+
+  </div>
+
+</section>
+
+<!-- ═══ Footer ════════════════════════════════════════════════════ -->
+
+<footer>
+
   <div class="footer-inner">
 
     <span class="footer-brand">
@@ -1312,6 +1900,7 @@
     </span>
 
     <div class="footer-info">
+
       <a href="mailto:ronaksuresh23@gmail.com">
         ronaksuresh23@gmail.com
       </a>
@@ -1321,9 +1910,11 @@
       <a href="tel:+919136011996">
         +91 91360 11996
       </a>
+
     </div>
 
     <div class="footer-social">
+
       <a href="https://www.linkedin.com/in/ronaksuresh23/" target="_blank">
         LinkedIn
       </a>
@@ -1333,94 +1924,100 @@
       <span style="color:var(--meta);">
         Clarity-driven growth
       </span>
+
     </div>
 
   </div>
-</footer>
 
+</footer>  
+<script>
+document.addEventListener("DOMContentLoaded", function () {
 
-  <script>
-    // ─── Nav scroll ─────────────────────────────────────────────────
-    var nav = document.getElementById('nav');
-    var ticking = false;
-    window.addEventListener('scroll', function () {
-      if (!ticking) {
-        requestAnimationFrame(function () {
-          nav.classList.toggle('scrolled', window.scrollY > 80);
-          ticking = false;
+  /* ─────────────────────────────────────────────
+     NAV SCROLL EFFECT
+  ───────────────────────────────────────────── */
+
+  const nav = document.getElementById("nav");
+  let ticking = false;
+
+  window.addEventListener("scroll", function () {
+    if (!ticking) {
+      requestAnimationFrame(function () {
+        nav.classList.toggle("scrolled", window.scrollY > 80);
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+
+  /* ─────────────────────────────────────────────
+     SMOOTH SCROLL
+  ───────────────────────────────────────────── */
+
+  document.querySelectorAll(".nav-link[data-target]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      const target = document.getElementById(
+        this.getAttribute("data-target")
+      );
+
+      if (target) {
+        target.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
         });
-        ticking = true;
       }
     });
+  });
 
-    // ─── Nav smooth scroll ──────────────────────────────────────────
-    document.querySelectorAll('.nav-link[data-target]').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var el = document.getElementById(this.getAttribute('data-target'));
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
-      });
-    });
-    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
-      a.addEventListener('click', function (e) {
-        var href = this.getAttribute('href');
-        if (href === '#') return;
-        var el = document.querySelector(href);
-        if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth' }); }
-      });
-    });
+  document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+    link.addEventListener("click", function (e) {
 
-    // ─── IntersectionObserver reveals ───────────────────────────────
-    var revealObserver = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+      const href = this.getAttribute("href");
 
-    document.querySelectorAll('.reveal').forEach(function (el) {
-      revealObserver.observe(el);
-    });
+      if (href === "#") return;
 
-    // ─── ChaOS message cycle ───────────────────────────────────────
-   
-    // ─── Growth stage interaction ──────────────────────────────────
-    const activeStep = document.querySelector(".framework-step.active");
+      const target = document.querySelector(href);
 
-if (activeStep) {
-  number.textContent = activeStep.dataset.number;
-  heading.textContent = activeStep.dataset.title;
-  description.textContent = activeStep.dataset.description;
-}
+      if (target) {
+        e.preventDefault();
 
-    // ─── Brands progression ────────────────────────────────────────
-    var brandEls = document.querySelectorAll('.brand-el');
-    var brandIdx = 0;
-
-    function advanceBrands() {
-      brandEls.forEach(function (el, i) {
-        el.classList.toggle('active', i === brandIdx);
-      });
-      brandIdx = (brandIdx + 1) % brandEls.length;
-    }
-
-    var brandTimer = setInterval(advanceBrands, 2200);
-    brandEls.forEach(function (el) {
-      el.addEventListener('click', function () {
-        brandEls.forEach(function (e) { e.classList.remove('active'); });
-        this.classList.add('active');
-        brandIdx = parseInt(this.textContent.trim()) % brandEls.length;
-        // resolve index from text
-        brandEls.forEach(function (e, i) {
-          if (e.textContent.trim() === el.textContent.trim()) brandIdx = i;
+        target.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
         });
-        clearInterval(brandTimer);
-        brandTimer = setInterval(advanceBrands, 2200);
-      });
+      }
     });
-  </script>
-  <script>
-document.addEventListener("DOMContentLoaded", function () {
+  });
+
+  /* ─────────────────────────────────────────────
+     REVEAL ANIMATIONS
+  ───────────────────────────────────────────── */
+
+  const revealObserver = new IntersectionObserver(
+    function (entries) {
+
+      entries.forEach(function (entry) {
+
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+
+      });
+
+    },
+    {
+      threshold: 0.1,
+      rootMargin: "0px 0px -40px 0px"
+    }
+  );
+
+  document.querySelectorAll(".reveal").forEach(function (el) {
+    revealObserver.observe(el);
+  });
+
+  /* ─────────────────────────────────────────────
+     FRAMEWORK INTERACTION
+  ───────────────────────────────────────────── */
 
   const steps = document.querySelectorAll(".framework-step");
 
@@ -1428,17 +2025,50 @@ document.addEventListener("DOMContentLoaded", function () {
   const heading = document.getElementById("frameworkHeading");
   const description = document.getElementById("frameworkDescription");
 
-  steps.forEach(step => {
+  function updateFramework(step) {
+
+    if (!step) return;
+
+    steps.forEach(function (s) {
+      s.classList.remove("active");
+    });
+
+    step.classList.add("active");
+
+    number.textContent = step.dataset.number;
+    heading.textContent = step.dataset.title;
+    description.textContent = step.dataset.description;
+  }
+
+  const activeStep = document.querySelector(".framework-step.active");
+
+  if (activeStep) {
+    updateFramework(activeStep);
+  }
+
+  steps.forEach(function (step) {
 
     step.addEventListener("click", function () {
+      updateFramework(this);
+    });
 
-      steps.forEach(s => s.classList.remove("active"));
+  });
+
+  /* ─────────────────────────────────────────────
+     BRAND PILL HOVER ENHANCEMENT
+  ───────────────────────────────────────────── */
+
+  const brandPills = document.querySelectorAll(".brand-pill");
+
+  brandPills.forEach(function (pill) {
+
+    pill.addEventListener("mouseenter", function () {
+
+      brandPills.forEach(function (p) {
+        p.classList.remove("active");
+      });
+
       this.classList.add("active");
-
-      number.textContent = this.dataset.number;
-      heading.textContent = this.dataset.title;
-      description.textContent = this.dataset.description;
-
     });
 
   });
