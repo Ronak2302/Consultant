@@ -675,132 +675,77 @@ section.alt {
  /* ─── Framework ────────────────────────────────────────────────── */
 
 .framework-layout {
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 140px;
-
-  align-items: center;
-  margin-top: 72px;
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 120px;
+    margin-top: 64px;
+    align-items: center;
 }
 
-/* Left Navigation */
-
 .framework-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
 }
 
 .framework-step {
-  background: none;
-  border: none;
-  padding: 0;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
 
-  text-align: left;
+    text-align: left;
 
-  font-family: var(--font-display);
-  font-size: 44px;
-  font-weight: 700;
+    font-family: var(--font-display);
+    font-size: 42px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
 
-  letter-spacing: -0.04em;
-  line-height: 1;
+    color: var(--meta);
+    cursor: pointer;
 
-  color: var(--meta);
+    transition: color .3s ease;
 
-  cursor: pointer;
+    appearance: none;
+    list-style: none;
+}
 
-  transition:
-    color .35s ease,
-    transform .35s ease;
-
-  position: relative;
+.framework-step::before {
+    content: none;
+    display: none;
 }
 
 .framework-step:hover {
-  color: var(--fg);
-  transform: translateX(6px);
+    color: var(--fg);
 }
 
 .framework-step.active {
-  color: var(--accent);
-  transform: translateX(10px);
+    color: var(--accent);
 }
-
-/* Active indicator */
-
-.framework-step.active::before {
-  content: "";
-
-  position: absolute;
-
-  left: -24px;
-  top: 50%;
-
-  width: 8px;
-  height: 8px;
-
-  border-radius: 50%;
-
-  background: var(--accent);
-
-  transform: translateY(-50%);
-}
-
-/* Right Panel */
 
 .framework-panel {
-  max-width: 760px;
+    max-width: 700px;
 }
-
-/* Number */
 
 .framework-number {
-  font-size: 13px;
-  font-weight: 600;
-
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-
-  color: var(--accent);
-
-  margin-bottom: 24px;
+    font-size: 14px;
+    letter-spacing: .2em;
+    color: var(--accent);
+    margin-bottom: 20px;
 }
-
-/* Heading */
 
 .framework-heading {
-  font-family: var(--font-display);
-
-  font-size: clamp(60px, 7vw, 96px);
-  font-weight: 700;
-
-  line-height: 0.95;
-  letter-spacing: -0.05em;
-
-  margin-bottom: 28px;
-
-  text-wrap: balance;
+    font-family: var(--font-display);
+    font-size: clamp(56px, 6vw, 88px);
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 24px;
 }
 
-/* Description */
-
 .framework-description {
-  max-width: 680px;
-
-  font-size: 20px;
-  line-height: 1.9;
-
-  color: var(--muted);
-}
-
-/* Subtle fade animation when content changes */
-
-.framework-number,
-.framework-heading,
-.framework-description {
-  transition:
-    opacity .35s ease,
-    transform .35s ease;
+    font-size: 20px;
+    line-height: 1.8;
+    color: var(--muted);
 }
  /* ─── Brands ────────────────────────────────────────────────── */
 
@@ -1302,53 +1247,52 @@ section.alt {
 
   /* ---------- Framework ---------- */
 
-  .framework-layout {
+.framework-layout {
     grid-template-columns: 1fr;
     gap: 40px;
     margin-top: 40px;
-  }
+}
 
-  .framework-nav {
-    flex-direction: row;
+.framework-nav {
+    display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 12px;
-  }
+}
 
-  .framework-step {
-    font-size: 16px;
-    padding: 10px 16px;
+.framework-step {
+    background: none;
+    border: none;
+    padding: 0;
 
-    border: 1px solid var(--border);
-    border-radius: 999px;
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 700;
 
-    color: var(--muted);
-  }
+    color: var(--meta);
+}
 
-  .framework-step.active {
-    background: var(--accent);
-    color: var(--accent-on);
-    border-color: var(--accent);
-  }
+.framework-step.active {
+    color: var(--accent);
+}
 
-  .framework-panel {
+.framework-panel {
     text-align: center;
-  }
+}
 
-  .framework-number {
+.framework-number {
     margin-bottom: 12px;
-  }
+}
 
-  .framework-heading {
+.framework-heading {
     font-size: 42px;
     margin-bottom: 20px;
-  }
+}
 
-  .framework-description {
+.framework-description {
     font-size: 16px;
     line-height: 1.8;
-  }
-
+}
   /* ---------- Brands ---------- */
 
   .brands-wall {
