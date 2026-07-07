@@ -1148,73 +1148,83 @@
 
     <div class="framework-layout">
 
-    <div class="framework-nav">
+      <!-- LEFT NAVIGATION -->
 
-      <button class="framework-step active"
-        data-title="Discover"
-        data-number="01"
-        data-description="Before strategies are built or channels are selected, the market, customer, and competitive dynamics are mapped in detail. This process reveals the underlying constraint limiting growth, creating clarity on where effort will generate the greatest impact.">
+      <div class="framework-nav">
 
-        Discover
+        <button
+          class="framework-step active"
+          data-title="Discover"
+          data-number="01"
+          data-description="Before strategies are built or channels are selected, the market, customer, and competitive dynamics are mapped in detail. This process reveals the underlying constraint limiting growth, creating clarity on where effort will generate the greatest impact.">
 
-      </button>
+          Discover
 
-      <button class="framework-step"
-        data-title="Diagnose"
-        data-number="02"
-        data-description="The focus extends beyond metrics and channel performance. By examining how customers perceive the brand and interact across touchpoints, deeper insights emerge into what is driving results and what is holding them back.">
+        </button>
 
-        Diagnose
+        <button
+          class="framework-step"
+          data-title="Diagnose"
+          data-number="02"
+          data-description="The focus extends beyond metrics and channel performance. By examining how customers perceive the brand and interact across touchpoints, deeper insights emerge into what is driving results and what is holding them back.">
 
-      </button>
+          Diagnose
 
-      <button class="framework-step"
-        data-title="Position"
-        data-number="03"
-        data-description="Marketing performs best when positioning is clear. By defining a distinct place in the market, the brand becomes the obvious choice for the right audience, making every campaign, message and investment work harder.">
+        </button>
 
-        Position
+        <button
+          class="framework-step"
+          data-title="Position"
+          data-number="03"
+          data-description="Marketing performs best when positioning is clear. By defining a distinct place in the market, the brand becomes the obvious choice for the right audience, making every campaign, message and investment work harder.">
 
-      </button>
+          Position
 
-      <button class="framework-step"
-        data-title="Activate"
-        data-number="04"
-        data-description="Once the strategy is clear, execution becomes a matter of alignment. Content, media, social, partnerships and customer touchpoints are orchestrated around a single positioning.">
+        </button>
 
-        Activate
+        <button
+          class="framework-step"
+          data-title="Activate"
+          data-number="04"
+          data-description="Once the strategy is clear, execution becomes a matter of alignment. Content, media, social, partnerships and customer touchpoints are orchestrated around a single positioning.">
 
-      </button>
+          Activate
 
-      <button class="framework-step"
-        data-title="Scale"
-        data-number="05"
-        data-description="Growth is not a one-time outcome but a continuous process of refinement. By measuring what matters, uncovering what drives results, and doubling down on high-leverage opportunities, momentum compounds over time.">
+        </button>
 
-        Scale
+        <button
+          class="framework-step"
+          data-title="Scale"
+          data-number="05"
+          data-description="Growth is not a one-time outcome but a continuous process of refinement. By measuring what matters, uncovering what drives results, and doubling down on high-leverage opportunities, momentum compounds over time.">
 
-      </button>
+          Scale
 
-    </div>
+        </button>
 
-    <div class="framework-panel">
-
-      <div class="framework-number" id="frameworkNumber">
-        01
       </div>
 
-      <h3 class="framework-heading" id="frameworkHeading">
-        Discover
-      </h3>
+      <!-- RIGHT CONTENT -->
 
-      <p class="framework-description" id="frameworkDescription">
-        Before strategies are built or channels are selected...
-      </p>
+      <div class="framework-panel">
+
+        <div class="framework-number" id="frameworkNumber">
+          01
+        </div>
+
+        <h3 class="framework-heading" id="frameworkHeading">
+          Discover
+        </h3>
+
+        <p class="framework-description" id="frameworkDescription">
+          Before strategies are built or channels are selected, the market, customer, and competitive dynamics are mapped in detail. This process reveals the underlying constraint limiting growth, creating clarity on where effort will generate the greatest impact.
+        </p>
+
+      </div>
 
     </div>
 
   </div>
-
 </section>
   <!-- ═══ Brands ─────────────────────────────────────────────────── -->
   <section class="alt" id="brands">
@@ -1375,7 +1385,13 @@
     // ─── ChaOS message cycle ───────────────────────────────────────
    
     // ─── Growth stage interaction ──────────────────────────────────
-    
+    const activeStep = document.querySelector(".framework-step.active");
+
+if (activeStep) {
+  number.textContent = activeStep.dataset.number;
+  heading.textContent = activeStep.dataset.title;
+  description.textContent = activeStep.dataset.description;
+}
 
     // ─── Brands progression ────────────────────────────────────────
     var brandEls = document.querySelectorAll('.brand-el');
