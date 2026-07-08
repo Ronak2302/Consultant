@@ -1133,18 +1133,39 @@ section.alt {
   }
 /* ---------- Section Alignment ---------- */
 
+/* ---------- Section Alignment ---------- */
+
 .hero-content,
 #about,
 .cta-section {
-    text-align:center;
+    text-align: center;
 }
 
-#framework .section-label {
-    text-align: left;
+/* Centre labels & headings on mobile */
+
+#chaos .section-label,
+#framework .section-label,
+#brands .section-label,
+#about .section-label {
+    text-align: center;
 }
 
-#framework .section-title{
-    text-align:left;
+#chaos .section-title,
+#framework .section-title,
+#brands .section-title,
+#about .section-title {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#chaos .section-desc,
+#framework .section-desc,
+#brands .section-desc,
+#about .section-desc {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* ---------- Navigation ---------- */
@@ -1352,8 +1373,8 @@ nav{
 .chaos-box{
     position:relative;
     width:100%;
-    max-width:300px;
-    height:230px;
+    max-width:330px;
+    height:250px;
     margin:0 auto;
 }
 
