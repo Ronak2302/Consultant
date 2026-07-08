@@ -1145,10 +1145,9 @@ section.alt {
 /* ---------- Section Alignment ---------- */
 
 .hero-content,
-#brands,
 #about,
 .cta-section {
-    text-align: center;
+    text-align:center;
 }
 
 #framework .section-label {
@@ -1159,29 +1158,88 @@ section.alt {
     text-align:left;
 }
 
-  /* ---------- Navigation ---------- */
+/* ---------- Navigation ---------- */
 
-  nav {
-    padding: 12px 20px;
-  }
+nav{
+    position:fixed;
+    top:14px;
+    left:16px;
+    right:16px;
+    z-index:1000;
 
-  .nav-brand {
-    font-size: 16px;
-  }
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 
-  .nav-links {
-    gap: 10px;
-  }
+    padding:12px 18px;
 
-  .nav-link {
-    font-size: 13px;
-  }
+    background:rgba(15,15,15,.72);
+    backdrop-filter:blur(24px) saturate(180%);
+    -webkit-backdrop-filter:blur(24px) saturate(180%);
 
-  .nav-cta {
-    font-size: 12px;
-    padding: 8px 12px;
-  }
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:18px;
 
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.28);
+}
+
+.nav-brand{
+    font-size:17px;
+    font-weight:700;
+    letter-spacing:-0.02em;
+    white-space:nowrap;
+    flex-shrink:0;
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:16px;
+}
+
+.nav-link{
+    appearance:none;
+    background:none;
+    border:none;
+
+    padding:0;
+
+    font-size:13px;
+    font-weight:500;
+    color:var(--muted);
+
+    transition:.25s;
+
+    white-space:nowrap;
+}
+
+.nav-link:hover,
+.nav-link:focus{
+    color:var(--fg);
+}
+
+.nav-cta{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:8px 14px;
+
+    border-radius:999px;
+
+    background:var(--accent);
+    color:var(--accent-on);
+
+    font-size:12px;
+    font-weight:600;
+
+    transition:.25s;
+}
+
+.nav-cta:hover{
+    transform:translateY(-1px);
+}
   /* ---------- Hero ---------- */
 
 .hero {
@@ -1525,21 +1583,33 @@ padding-bottom:32px;
 
 @media (max-width: 480px) {
 
-  /* ---------- Navigation ---------- */
+/* ---------- Navigation ---------- */
 
-  .nav-links {
-    gap: 8px;
-  }
+nav{
+    top:10px;
+    left:12px;
+    right:12px;
 
-  .nav-link {
-    font-size: 12px;
-  }
+    padding:10px 14px;
+    border-radius:16px;
+}
 
-  .nav-cta {
-    font-size: 11px;
-    padding: 7px 10px;
-  }
+.nav-brand{
+    font-size:16px;
+}
 
+.nav-links{
+    gap:12px;
+}
+
+.nav-link{
+    font-size:12px;
+}
+
+.nav-cta{
+    padding:7px 12px;
+    font-size:11px;
+}
  /* ---------- Hero ---------- */
 
 .hero{
