@@ -1155,8 +1155,8 @@ section.alt {
     text-align: left;
 }
 
-#framework .section-title {
-    text-align: left;
+#framework .section-title{
+    text-align:left;
 }
 
   /* ---------- Navigation ---------- */
@@ -1267,8 +1267,22 @@ section.alt {
 }
 
 .chaos-content{
-    width:100%;
-    text-align:left;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+}
+
+.chaos-title{
+    text-align:center !important;
+    max-width:340px;
+    margin:0 auto 16px;
+}
+
+.chaos-text{
+    text-align:center;
+    max-width:340px;
+    margin:0 auto 18px;
 }
 
 .chaos-title{
@@ -1300,55 +1314,70 @@ section.alt {
     font-size:11px;
 }
  /* ---------- Framework ---------- */
-#framework{
-    padding-top:64px;
-}
 
 .framework-layout{
     display:flex;
     flex-direction:column;
-    gap:32px;
+    gap:36px;
     margin-top:40px;
 }
 
+/* Pills Navigation */
+
 .framework-nav{
-    display:flex;
-    flex-wrap:nowrap;
-    overflow-x:auto;
-    overflow-y:hidden;
-
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
     gap:12px;
-
-    padding:4px 0 8px;
-
-    scrollbar-width:none;
-    -webkit-overflow-scrolling:touch;
+    width:100%;
+    margin-bottom:12px;
 }
 
-.framework-nav::-webkit-scrollbar{
-    display:none;
+/* First Row */
+
+.framework-step:nth-child(1){
+    grid-column:1 / span 2;
+}
+
+.framework-step:nth-child(2){
+    grid-column:3 / span 2;
+}
+
+.framework-step:nth-child(3){
+    grid-column:5 / span 2;
+}
+
+/* Second Row (Centered) */
+
+.framework-step:nth-child(4){
+    grid-column:2 / span 2;
+}
+
+.framework-step:nth-child(5){
+    grid-column:4 / span 2;
 }
 
 .framework-step{
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-    flex:0 0 auto;
+    min-height:46px;
+    width:100%;
 
-    padding:10px 18px;
+    padding:10px 16px;
 
+    background:transparent;
     border:1px solid var(--border);
     border-radius:999px;
-
-    background:rgba(255,255,255,.02);
 
     font-family:var(--font-display);
     font-size:15px;
     font-weight:600;
+    line-height:1;
 
     color:var(--muted);
 
-    transition:.25s ease;
-
-    white-space:nowrap;
+    transition:all .25s ease;
 }
 
 .framework-step:hover{
@@ -1357,79 +1386,38 @@ section.alt {
 }
 
 .framework-step.active{
-
-    background:rgba(212,175,55,.12);
-
+    background:var(--accent);
     border-color:var(--accent);
-
-    color:var(--accent);
-
-    box-shadow:
-    inset 0 0 0 1px rgba(212,175,55,.15);
+    color:var(--accent-on);
 }
 
+/* Content */
+
 .framework-panel{
-    width:100%;
     text-align:left;
 }
 
 .framework-number{
     font-size:12px;
-    letter-spacing:.22em;
+    font-weight:600;
+    letter-spacing:.18em;
     color:var(--accent);
-    margin-bottom:12px;
+    margin-bottom:14px;
 }
 
 .framework-heading{
-
     font-family:var(--font-display);
-
     font-size:clamp(42px,10vw,54px);
-
     line-height:.95;
-
     letter-spacing:-0.04em;
-
-    margin-bottom:16px;
+    margin-bottom:20px;
 }
 
 .framework-description{
-
     font-size:16px;
-
-    line-height:1.75;
-
+    line-height:1.8;
     color:var(--muted);
-
-    max-width:100%;
 }
-  /* ---------- Brands ---------- */
-
-  .brands-wall {
-    justify-content: center;
-    gap: 12px;
-    margin-top: 40px;
-  }
-
-  .brand-pill {
-    padding: 12px 20px;
-    font-size: 14px;
-  }
-
-  .brands-summary {
-    flex-direction: column;
-    gap: 28px;
-    margin-top: 48px;
-  }
-
-  .summary-stat {
-    text-align: center;
-  }
-
-  .summary-stat span {
-    font-size: 34px;
-  }
-
   /* ---------- About ---------- */
 
   .about-grid {
@@ -1574,18 +1562,29 @@ font-size:clamp(42px,11vw,58px);
 .hero-followup {
   margin-top: 14px;
 }
-  /* ---------- Framework ---------- */
+ /* ---------- Framework ---------- */
 
-  .framework-step {
-    font-size: 20px;
+.framework-nav{
+    gap:10px;
 }
 
-.framework-heading {
-    font-size: 38px;
+.framework-step{
+    min-height:42px;
+    padding:9px 12px;
+    font-size:13px;
 }
 
-.framework-description {
-    font-size: 16px;
+.framework-number{
+    margin-bottom:12px;
+}
+
+.framework-heading{
+    font-size:38px;
+}
+
+.framework-description{
+    font-size:15px;
+    line-height:1.75;
 }
   /* ---------- Chaos ---------- */
 
