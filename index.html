@@ -672,6 +672,13 @@ section.alt {
   from { transform: translateX(-50%) translateY(0); }
   to { transform: translateX(-50%) translateY(-18px); }
 }
+.desktop-only{
+    display:block;
+}
+
+.mobile-only{
+    display:none;
+}
  /* ─── Framework ────────────────────────────────────────────────── */
 
 .framework-layout {
@@ -749,95 +756,77 @@ section.alt {
 }
  /* ─── Brands ────────────────────────────────────────────────── */
 
-.brands-wall {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 16px;
+.brands-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
 
-  max-width: 900px;
-  margin: 60px auto 40px;
+    margin-top:64px;
 }
 
-.brand-pill {
-  padding: 14px 28px;
+.brand-pill{
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-  border-radius: 999px;
-  border: 1px solid var(--border);
+    height:84px;
 
-  background: var(--bg);
-  color: var(--fg);
+    padding:20px;
 
-  font-family: var(--font-display);
-  font-size: 15px;
-  font-weight: 500;
+    border:1px solid var(--border);
+    border-radius:18px;
 
-  transition:
-    transform .4s cubic-bezier(.22,1,.36,1),
-    border-color .4s cubic-bezier(.22,1,.36,1),
-    color .4s cubic-bezier(.22,1,.36,1),
-    background .4s cubic-bezier(.22,1,.36,1),
-    box-shadow .4s cubic-bezier(.22,1,.36,1);
+    background:rgba(255,255,255,.02);
+
+    font-family:var(--font-display);
+    font-size:17px;
+    font-weight:600;
+    letter-spacing:-0.02em;
+
+    color:var(--fg);
+
+    transition:
+        transform .35s cubic-bezier(.22,1,.36,1),
+        border-color .35s ease,
+        background .35s ease,
+        box-shadow .35s ease;
 }
 
-.brand-pill:hover {
-  border-color: var(--accent);
-  color: var(--accent);
+.brand-pill:hover{
+    transform:translateY(-4px);
 
-  transform: translateY(-4px);
+    border-color:rgba(212,175,55,.45);
 
-  box-shadow:
-    0 12px 30px rgba(0,0,0,.25),
-    0 0 20px rgba(212,175,55,.08);
+    background:rgba(212,175,55,.05);
+
+    box-shadow:
+        0 16px 36px rgba(0,0,0,.22),
+        0 0 24px rgba(212,175,55,.08);
 }
 
-/* Summary Stats */
-
-.brands-summary {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  gap: 80px;
-
-  margin-top: 60px;
-
-  text-align: center;
+.brands-summary{
+    display:flex;
+    justify-content:center;
+    gap:72px;
+    margin-top:72px;
 }
 
-.summary-stat {
-  color: var(--meta);
-  font-size: 14px;
-
-  transition:
-    transform .5s cubic-bezier(.22,1,.36,1),
-    color .3s ease;
+.summary-stat{
+    text-align:center;
 }
 
-.summary-stat:hover {
-  transform: translateY(-4px);
+.summary-stat span{
+    display:block;
+
+    font-family:var(--font-display);
+    font-size:44px;
+    font-weight:700;
+
+    margin-bottom:6px;
 }
 
-.summary-stat span {
-  display: block;
-
-  font-family: var(--font-display);
-  font-size: 42px;
-  font-weight: 700;
-
-  color: var(--fg);
-
-  line-height: 1;
-  margin-bottom: 8px;
-
-  transition:
-    color .3s ease,
-    transform .4s cubic-bezier(.22,1,.36,1);
-}
-
-.summary-stat:hover span {
-  color: var(--accent);
-  transform: scale(1.04);
+.summary-stat p{
+    color:var(--muted);
 }
  /* ─── About ─────────────────────────────────────────────────── */
 
@@ -1306,91 +1295,137 @@ nav{
   max-width: 280px;
 }
   /* ---------- Chaos ---------- */
+
 #chaos{
-    padding-top:24px;
+    padding-top:40px;
 }
 
 .chaos-layout{
-    display:grid;
-    grid-template-columns:1fr;
-    gap:28px;
-    align-items:center;
-}
-
-.chaos-box{
-    width:100%;
-    max-width:300px;
-    height:220px;
-    margin:0 auto;
-}
-
-.chaos-content{
     display:flex;
     flex-direction:column;
     align-items:center;
-    text-align:center;
+    gap:32px;
+    margin-top:40px;
 }
 
-.chaos-title{
-    text-align:center !important;
-    max-width:340px;
-    margin:0 auto 16px;
-}
+/* Mobile Heading */
 
-.chaos-text{
+.chaos-content{
+    order:1;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    width:100%;
+    max-width:360px;
+
     text-align:center;
-    max-width:340px;
-    margin:0 auto 18px;
 }
 
 .chaos-title{
     font-family:var(--font-display);
-    font-size:34px;
+    font-size:clamp(34px,9vw,42px);
     line-height:1.08;
-    letter-spacing:-0.03em;
-    margin-bottom:16px;
-    text-align:left;
+    letter-spacing:-0.04em;
+
+    text-align:center;
+
+    margin-bottom:20px;
 }
 
 .chaos-text{
+    max-width:340px;
+
+    margin:0 auto 18px;
+
     font-size:16px;
-    line-height:1.75;
+    line-height:1.8;
+
     color:var(--muted);
-    margin-bottom:18px;
-    text-align:left;
+
+    text-align:center;
 }
+
+/* Diagram */
+
+.chaos-box{
+    order:2;
+
+    width:100%;
+    max-width:320px;
+    height:240px;
+
+    margin:8px auto;
+}
+
+/* Floating Nodes */
 
 .floating-node{
     width:46px;
     height:46px;
+
     font-size:8px;
+    line-height:1.2;
 }
 
 .strategy-core{
     width:72px;
     height:72px;
+
     font-size:11px;
+}
+
+/* Paragraphs */
+
+.chaos-copy{
+    order:3;
+
+    max-width:360px;
+    width:100%;
+
+    text-align:center;
+}
+
+.chaos-copy p{
+    font-size:16px;
+    line-height:1.8;
+
+    color:var(--muted);
+
+    margin-bottom:18px;
+}
+
+.chaos-copy p:last-child{
+    margin-bottom:0;
 }
  /* ---------- Framework ---------- */
 
 .framework-layout{
     display:flex;
     flex-direction:column;
+    align-items:center;
     gap:36px;
-    margin-top:40px;
+    margin-top:48px;
 }
 
-/* Pills Navigation */
+/* ==========================
+   Navigation Pills
+========================== */
 
 .framework-nav{
+    width:100%;
+
     display:grid;
     grid-template-columns:repeat(6,1fr);
+
     gap:12px;
-    width:100%;
-    margin-bottom:12px;
+
+    justify-items:center;
+    align-items:center;
 }
 
-/* First Row */
+/* Row 1 */
 
 .framework-step:nth-child(1){
     grid-column:1 / span 2;
@@ -1404,7 +1439,7 @@ nav{
     grid-column:5 / span 2;
 }
 
-/* Second Row (Centered) */
+/* Row 2 */
 
 .framework-step:nth-child(4){
     grid-column:2 / span 2;
@@ -1415,66 +1450,132 @@ nav{
 }
 
 .framework-step{
+    width:100%;
+    min-height:46px;
+
     display:flex;
     align-items:center;
     justify-content:center;
 
-    min-height:46px;
-    width:100%;
+    padding:12px 14px;
 
-    padding:10px 16px;
-
-    background:transparent;
-    border:1px solid var(--border);
     border-radius:999px;
+    border:1px solid var(--border);
 
-    font-family:var(--font-display);
-    font-size:15px;
-    font-weight:600;
-    line-height:1;
+    background:rgba(255,255,255,.02);
 
     color:var(--muted);
 
-    transition:all .25s ease;
+    font-family:var(--font-display);
+    font-size:14px;
+    font-weight:600;
+    line-height:1;
+
+    transition:
+        background .25s ease,
+        color .25s ease,
+        border-color .25s ease,
+        transform .25s ease;
 }
 
 .framework-step:hover{
     border-color:var(--accent);
     color:var(--fg);
+    transform:translateY(-2px);
 }
 
 .framework-step.active{
     background:var(--accent);
-    border-color:var(--accent);
     color:var(--accent-on);
+    border-color:var(--accent);
 }
 
-/* Content */
+/* ==========================
+   Content
+========================== */
 
 .framework-panel{
-    text-align:left;
+    width:100%;
+    max-width:360px;
+
+    margin:0 auto;
+
+    text-align:center;
 }
 
 .framework-number{
+    display:block;
+
     font-size:12px;
     font-weight:600;
+
     letter-spacing:.18em;
+
     color:var(--accent);
-    margin-bottom:14px;
+
+    margin-bottom:16px;
 }
 
 .framework-heading{
     font-family:var(--font-display);
-    font-size:clamp(42px,10vw,54px);
+
+    font-size:clamp(40px,10vw,54px);
+    font-weight:700;
+
     line-height:.95;
     letter-spacing:-0.04em;
-    margin-bottom:20px;
+
+    margin-bottom:22px;
 }
 
 .framework-description{
+    max-width:340px;
+
+    margin:0 auto;
+
     font-size:16px;
     line-height:1.8;
+
     color:var(--muted);
+}
+
+/* ---------- Brands ---------- */
+
+.brands-grid{
+    display:flex;
+    gap:14px;
+
+    overflow-x:auto;
+    padding-bottom:10px;
+    margin-top:48px;
+
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+}
+
+.brands-grid::-webkit-scrollbar{
+    display:none;
+}
+
+.brand-pill{
+    flex:0 0 180px;
+
+    height:72px;
+
+    font-size:15px;
+
+    scroll-snap-align:center;
+}
+
+.brands-summary{
+    flex-direction:column;
+    gap:28px;
+    margin-top:48px;
+}
+
+.summary-stat span{
+    font-size:34px;
 }
   /* ---------- About ---------- */
 
@@ -1632,51 +1733,30 @@ font-size:clamp(42px,11vw,58px);
 .hero-followup {
   margin-top: 14px;
 }
- /* ---------- Framework ---------- */
-
-.framework-nav{
-    gap:10px;
-}
-
-.framework-step{
-    min-height:42px;
-    padding:9px 12px;
-    font-size:13px;
-}
-
-.framework-number{
-    margin-bottom:12px;
-}
-
-.framework-heading{
-    font-size:38px;
-}
-
-.framework-description{
-    font-size:15px;
-    line-height:1.75;
-}
-  /* ---------- Chaos ---------- */
+/* ---------- Chaos ---------- */
 
 #chaos{
-    padding-top:20px;
+    padding-top:24px;
 }
 
 .chaos-layout{
     gap:24px;
-}
-
-.chaos-box{
-    max-width:270px;
-    height:200px;
+    margin-top:28px;
 }
 
 .chaos-title{
     font-size:30px;
 }
 
-.chaos-text{
+.chaos-text,
+.chaos-copy p{
     font-size:15px;
+    line-height:1.75;
+}
+
+.chaos-box{
+    max-width:280px;
+    height:210px;
 }
 
 .floating-node{
@@ -1689,6 +1769,36 @@ font-size:clamp(42px,11vw,58px);
     width:62px;
     height:62px;
     font-size:10px;
+}
+ /* ---------- Framework ---------- */
+
+.framework-layout{
+    gap:30px;
+}
+
+.framework-nav{
+    gap:10px;
+}
+
+.framework-step{
+    min-height:42px;
+
+    padding:10px 12px;
+
+    font-size:13px;
+}
+
+.framework-number{
+    margin-bottom:14px;
+}
+
+.framework-heading{
+    font-size:36px;
+}
+
+.framework-description{
+    font-size:15px;
+    line-height:1.75;
 }
   /* ---------- About ---------- */
 
@@ -1751,18 +1861,27 @@ font-size:clamp(42px,11vw,58px);
 </section>
 
 <!-- ═══ From Chaos to Clarity ══════════════════════════════════════ -->
-
 <section class="alt" id="chaos">
 
   <div class="section-inner">
 
-    <p class="section-label reveal">
+    <p class="section-label">
       FROM CHAOS TO CLARITY
     </p>
 
+    <!-- Mobile heading -->
+
+    <h2 class="chaos-title mobile-only">
+      From disconnected tactics
+      <br>
+      to a unified system.
+    </h2>
+
     <div class="chaos-layout">
 
-      <div class="chaos-box reveal reveal-delay-1">
+      <!-- Diagram -->
+
+      <div class="chaos-box">
 
         <div class="floating-node n1">Brand</div>
         <div class="floating-node n2">Content</div>
@@ -1779,20 +1898,26 @@ font-size:clamp(42px,11vw,58px);
 
       </div>
 
+      <!-- Content -->
+
       <div class="chaos-content">
 
-        <h2 class="chaos-title reveal reveal-delay-2">
-          From disconnected tactics to a unified system.
+        <!-- Desktop heading -->
+
+        <h2 class="chaos-title desktop-only">
+          From disconnected tactics
+          <br>
+          to a unified system.
         </h2>
 
-        <p class="chaos-text reveal reveal-delay-3">
+        <p class="chaos-text">
           Many brands focus on improving individual channels.
           The real advantage lies elsewhere: in building a marketing
           ecosystem where every channel reinforces the next, creating
           momentum that compounds over time.
         </p>
 
-        <p class="chaos-text reveal reveal-delay-4">
+        <p class="chaos-text">
           The strongest marketing systems are built on alignment.
           Every channel supports the next, every touchpoint serves
           a purpose and every interaction moves the customer closer
@@ -1906,20 +2031,35 @@ font-size:clamp(42px,11vw,58px);
       Work That Moved the Needle
     </h2>
 
-    <div class="brands-wall reveal reveal-delay-2">
+    <div class="brands-grid">
 
-      <div class="brand-pill">Pidilite</div>
-      <div class="brand-pill">Unilever</div>
-      <div class="brand-pill">General Mills</div>
-      <div class="brand-pill">Perfetti Van Melle</div>
-      <div class="brand-pill">Bunge</div>
+            <div class="brand-pill">Pidilite</div>
+            <div class="brand-pill">Surf Excel</div>
+            <div class="brand-pill">Simple Skincare</div>
+            <div class="brand-pill">Love Beauty &amp; Planet</div>
+
+            <div class="brand-pill">Universal Pictures</div>
+            <div class="brand-pill">Nexa Music</div>
+            <div class="brand-pill">Pillsbury</div>
+            <div class="brand-pill">Betty Crocker</div>
+
+            <div class="brand-pill">Häagen-Dazs</div>
+            <div class="brand-pill">Nature Valley</div>
+            <div class="brand-pill">Center Fruit</div>
+            <div class="brand-pill">Cream Centre</div>
+
+            <div class="brand-pill">Ice Cream Works</div>
+            <div class="brand-pill">Tata Motors</div>
+            <div class="brand-pill">VFS Global</div>
+            <div class="brand-pill">Dalda</div>
+
+        </div>
 
     </div>
-
     <div class="brands-summary reveal reveal-delay-3">
 
       <div class="summary-stat">
-        <span>60+</span>
+        <span>40+</span>
         Brands
       </div>
 
