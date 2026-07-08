@@ -673,83 +673,79 @@ section.alt {
   to { transform: translateX(-50%) translateY(-18px); }
 }
  /* ─── Framework ────────────────────────────────────────────────── */
-/* ---------- Framework ---------- */
 
-#framework {
+.framework-layout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 120px;
+    margin-top: 64px;
+    align-items: center;
+}
+
+.framework-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.framework-step {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+
     text-align: left;
+
+    font-family: var(--font-display);
+    font-size: 42px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+
+    color: var(--meta);
+    cursor: pointer;
+
+    transition: color .3s ease;
+
+    appearance: none;
+    list-style: none;
 }
 
-#framework .section-inner {
-    padding-left: 24px;
-    padding-right: 24px;
+.framework-step::before {
+    content: none;
+    display: none;
 }
 
-#framework .section-title,
-#framework .section-label {
-    text-align: left;
+.framework-step:hover {
+    color: var(--fg);
 }
 
-.framework-layout{
-    display:flex;
-    flex-direction:column;
-    align-items:flex-start;
-    gap:28px;
-    margin-top:40px;
+.framework-step.active {
+    color: var(--accent);
 }
 
-.framework-nav{
-    display:flex;
-    flex-wrap:wrap;
-    gap:18px;
-    width:100%;
-    justify-content:flex-start;
+.framework-panel {
+    max-width: 700px;
 }
 
-.framework-step{
-    background:none;
-    border:none;
-    padding:0;
-
-    flex:0 0 auto;
-
-    font-family:var(--font-display);
-    font-size:20px;
-    font-weight:700;
-    letter-spacing:-0.03em;
-
-    color:var(--meta);
-
-    text-align:left;
+.framework-number {
+    font-size: 14px;
+    letter-spacing: .2em;
+    color: var(--accent);
+    margin-bottom: 20px;
 }
 
-.framework-step.active{
-    color:var(--accent);
+.framework-heading {
+    font-family: var(--font-display);
+    font-size: clamp(56px, 6vw, 88px);
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 24px;
 }
 
-.framework-panel{
-    width:100%;
-    text-align:left;
-}
-
-.framework-number{
-    font-size:13px;
-    letter-spacing:.18em;
-    margin-bottom:12px;
-}
-
-.framework-heading{
-    font-family:var(--font-display);
-    font-size:clamp(42px,10vw,56px);
-    line-height:.95;
-    margin-bottom:18px;
-    text-align:left;
-}
-
-.framework-description{
-    font-size:16px;
-    line-height:1.75;
-    text-align:left;
-    max-width:100%;
+.framework-description {
+    font-size: 20px;
+    line-height: 1.8;
+    color: var(--muted);
 }
  /* ─── Brands ────────────────────────────────────────────────── */
 
@@ -1155,15 +1151,14 @@ section.alt {
     text-align: center;
 }
 
-#chaos .section-label,
 #framework .section-label {
     text-align: left;
 }
 
-#framework .section-title,
-#chaos .chaos-title {
+#framework .section-title {
     text-align: left;
 }
+
   /* ---------- Navigation ---------- */
 
   nav {
@@ -1253,125 +1248,160 @@ section.alt {
   max-width: 280px;
 }
   /* ---------- Chaos ---------- */
-
- .chaos-layout{
-    gap:28px;
+#chaos{
+    padding-top:24px;
 }
 
-  .chaos-box {
-    width: 100%;
-    max-width: 340px;
-    height: 240px;
-    margin:0 auto 8px;
-  }
+.chaos-layout{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:28px;
+    align-items:center;
+}
 
-  .chaos-content {
-    text-align: center;
-  }
+.chaos-box{
+    width:100%;
+    max-width:300px;
+    height:220px;
+    margin:0 auto;
+}
 
-  .chaos-title{
+.chaos-content{
+    width:100%;
+    text-align:left;
+}
+
+.chaos-title{
+    font-family:var(--font-display);
     font-size:34px;
     line-height:1.08;
+    letter-spacing:-0.03em;
+    margin-bottom:16px;
+    text-align:left;
+}
+
+.chaos-text{
+    font-size:16px;
+    line-height:1.75;
+    color:var(--muted);
+    margin-bottom:18px;
+    text-align:left;
+}
+
+.floating-node{
+    width:46px;
+    height:46px;
+    font-size:8px;
+}
+
+.strategy-core{
+    width:72px;
+    height:72px;
+    font-size:11px;
+}
+ /* ---------- Framework ---------- */
+#framework{
+    padding-top:64px;
+}
+
+.framework-layout{
+    display:flex;
+    flex-direction:column;
+    gap:32px;
+    margin-top:40px;
+}
+
+.framework-nav{
+    display:flex;
+    flex-wrap:nowrap;
+    overflow-x:auto;
+    overflow-y:hidden;
+
+    gap:12px;
+
+    padding:4px 0 8px;
+
+    scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;
+}
+
+.framework-nav::-webkit-scrollbar{
+    display:none;
+}
+
+.framework-step{
+
+    flex:0 0 auto;
+
+    padding:10px 18px;
+
+    border:1px solid var(--border);
+    border-radius:999px;
+
+    background:rgba(255,255,255,.02);
+
+    font-family:var(--font-display);
+    font-size:15px;
+    font-weight:600;
+
+    color:var(--muted);
+
+    transition:.25s ease;
+
+    white-space:nowrap;
+}
+
+.framework-step:hover{
+    border-color:var(--accent);
+    color:var(--fg);
+}
+
+.framework-step.active{
+
+    background:rgba(212,175,55,.12);
+
+    border-color:var(--accent);
+
+    color:var(--accent);
+
+    box-shadow:
+    inset 0 0 0 1px rgba(212,175,55,.15);
+}
+
+.framework-panel{
+    width:100%;
+    text-align:left;
+}
+
+.framework-number{
+    font-size:12px;
+    letter-spacing:.22em;
+    color:var(--accent);
+    margin-bottom:12px;
+}
+
+.framework-heading{
+
+    font-family:var(--font-display);
+
+    font-size:clamp(42px,10vw,54px);
+
+    line-height:.95;
+
+    letter-spacing:-0.04em;
+
     margin-bottom:16px;
 }
 
-  .chaos-text {
-    font-size: 16px;
-    line-height: 1.8;
-  }
+.framework-description{
 
-  .floating-node {
-    width: 46px;
-    height: 46px;
-    font-size: 8px;
-  }
+    font-size:16px;
 
-  .strategy-core {
-    width: 72px;
-    height: 72px;
-    font-size: 11px;
-  }
+    line-height:1.75;
 
- /* ---------- Framework ---------- */
+    color:var(--muted);
 
-.framework-layout {
-    display: flex;
-    flex-direction: column;
-    gap: 36px;
-    margin-top: 48px;
-}
-
-/* Horizontal Apple-style navigation */
-
-.framework-nav {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    overflow-y: hidden;
-
-    gap: 28px;
-
-    padding-bottom: 8px;
-
-    justify-content: flex-start;
-
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-}
-
-.framework-nav::-webkit-scrollbar {
-    display: none;
-}
-
-.framework-step {
-    flex: 0 0 auto;
-
-    background: transparent;
-    border: none;
-    padding: 0;
-
-    font-family: var(--font-display);
-    font-size: 22px;
-    font-weight: 700;
-    letter-spacing: -0.03em;
-
-    color: var(--meta);
-
-    transition: color .25s ease;
-}
-
-.framework-step:hover {
-    color: var(--fg);
-}
-
-.framework-step.active {
-    color: var(--accent);
-}
-
-/* Content */
-
-.framework-panel {
-    text-align: left;
-}
-
-.framework-number {
-    font-size: 13px;
-    letter-spacing: .18em;
-    color: var(--accent);
-    margin-bottom: 18px;
-}
-
-.framework-heading {
-    font-family: var(--font-display);
-    font-size: clamp(42px, 10vw, 58px);
-    line-height: .95;
-    margin-bottom: 24px;
-}
-
-.framework-description {
-    font-size: 17px;
-    line-height: 1.8;
-    color: var(--muted);
+    max-width:100%;
 }
   /* ---------- Brands ---------- */
 
@@ -1558,34 +1588,39 @@ font-size:clamp(42px,11vw,58px);
     font-size: 16px;
 }
   /* ---------- Chaos ---------- */
+
 #chaos{
-    padding-top:24px;
+    padding-top:20px;
 }
 
 .chaos-layout{
-    gap:28px;
+    gap:24px;
 }
-  .chaos-title {
-    font-size: 30px;
-  }
 
-  .chaos-box {
-    max-width: 300px;
-    height: 220px;
-  }
+.chaos-box{
+    max-width:270px;
+    height:200px;
+}
 
-  .floating-node {
-    width: 42px;
-    height: 42px;
-    font-size: 7px;
-  }
+.chaos-title{
+    font-size:30px;
+}
 
-  .strategy-core {
-    width: 66px;
-    height: 66px;
-    font-size: 10px;
-  }
+.chaos-text{
+    font-size:15px;
+}
 
+.floating-node{
+    width:40px;
+    height:40px;
+    font-size:7px;
+}
+
+.strategy-core{
+    width:62px;
+    height:62px;
+    font-size:10px;
+}
   /* ---------- About ---------- */
 
   .portrait-img {
