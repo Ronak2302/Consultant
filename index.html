@@ -123,58 +123,116 @@
 }
     /* ─── Navigation ────────────────────────────────────────────── */
     nav {
-      position: fixed; top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 16px var(--space);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      transition: background 0.4s, border-color 0.4s, padding 0.4s;
-      border-bottom: 1px solid transparent;
-    }
-    nav.scrolled {
-      background: rgba(5,5,5,0.85);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom-color: var(--border);
-      padding: 12px var(--space);
-    }
-    .nav-brand {
-      font-family: var(--font-display);
-      font-size: 18px;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      color: var(--fg);
-      text-decoration: none;
-    }
-    .nav-link {
-      font-size: 14px;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
-      cursor: pointer;
-      background: none;
-      border: none;
-      font-family: var(--font-body);
-    }
-    .nav-link:hover { color: var(--fg); }
-    .nav-cta {
-      background: var(--accent);
-      color: var(--accent-on);
-      padding: 8px 20px;
-      border-radius: 6px;
-      font-size: 14px;
-      font-weight: 500;
-      text-decoration: none;
-      transition: background 0.2s;
-    }
-    .nav-cta:hover { background: var(--accent-hover); }
-    .nav-links { display: flex; align-items: center; gap: 24px; }
-    @media (max-width: 600px) {
-      .nav-links { gap: 14px; }
-      .nav-link-text { display: none; }
-    }
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
 
+  z-index: 100;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 16px var(--space);
+
+  transition:
+    background .4s,
+    border-color .4s,
+    padding .4s;
+
+  border-bottom: 1px solid transparent;
+}
+
+nav.scrolled {
+  background: rgba(5,5,5,.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  border-bottom-color: var(--border);
+
+  padding: 12px var(--space);
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -.02em;
+
+  color: var(--fg);
+  text-decoration: none;
+
+  flex-shrink: 0;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 28px;
+}
+
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+
+  height: 42px;
+
+  background: none;
+  border: none;
+
+  padding: 0;
+
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+
+  color: var(--muted);
+  text-decoration: none;
+
+  transition: color .25s ease;
+
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  color: var(--fg);
+}
+
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 42px;
+  padding: 0 22px;
+
+  border-radius: 999px;
+
+  background: var(--accent);
+  color: var(--accent-on);
+
+  border: 1px solid var(--accent);
+
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+
+  transition:
+    transform .25s ease,
+    background .25s ease,
+    box-shadow .25s ease;
+}
+
+.nav-cta:hover {
+  transform: translateY(-2px);
+  background: var(--accent-hover);
+}
     /* ─── Hero ──────────────────────────────────────────────────── */
 
 .hero {
@@ -323,49 +381,77 @@
   justify-content: center;
 
   min-width: 220px;
+  height: 54px;
 
-  padding: 14px 32px;
+  padding: 0 30px;
 
-  border-radius: 8px;
+  border-radius: 999px;
 
-  font-size: 15px;
-  font-weight: 500;
   font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
 
   text-decoration: none;
+  cursor: pointer;
 
   transition:
-    transform .25s ease,
-    background .25s ease,
-    border-color .25s ease;
+    transform .3s cubic-bezier(.22,1,.36,1),
+    background .3s ease,
+    border-color .3s ease,
+    color .3s ease,
+    box-shadow .3s ease;
 }
 
 .btn:hover {
   transform: translateY(-2px);
 }
 
+.btn:active {
+  transform: scale(.97);
+}
+
+/* Primary */
+
 .btn-primary {
   background: var(--accent);
   color: var(--accent-on);
+  border: 1px solid var(--accent);
+
+  box-shadow:
+    0 8px 24px rgba(212,175,55,.18);
 }
 
 .btn-primary:hover {
   background: var(--accent-hover);
+  border-color: var(--accent-hover);
+
+  box-shadow:
+    0 12px 32px rgba(212,175,55,.28);
 }
 
+/* Secondary */
+
 .btn-secondary {
-  background: transparent;
+  background: rgba(255,255,255,.03);
   color: var(--fg);
-  border: 1px solid var(--border);
+
+  border: 1px solid rgba(255,255,255,.12);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
 }
 
 .btn-secondary:hover {
-  border-color: var(--muted);
+  border-color: var(--accent);
+  color: var(--accent);
+
+  background: rgba(255,255,255,.05);
 }
 
 .btn-primary:active,
 .btn-secondary:active {
-  transform: scale(.98);
+  transform: scale(.97);
 }
 
 @keyframes heroReveal {
@@ -815,14 +901,26 @@ section.alt {
     text-align:center;
 }
 
-.summary-stat span{
-    display:block;
+.summary-stat span {
+  display: block;
 
-    font-family:var(--font-display);
-    font-size:44px;
-    font-weight:700;
+  font-family: var(--font-display);
+  font-size: 42px;
+  font-weight: 700;
 
-    margin-bottom:6px;
+  color: var(--accent);
+
+  line-height: 1;
+  margin-bottom: 8px;
+
+  transition:
+    transform .4s cubic-bezier(.22,1,.36,1),
+    color .3s ease;
+}
+
+.summary-stat:hover span {
+  color: var(--accent-hover);
+  transform: scale(1.05);
 }
 
 .summary-stat p{
@@ -875,29 +973,26 @@ section.alt {
 
 .about-name {
   font-family: var(--font-display);
-  font-size: clamp(28px, 3vw, 36px);
+  font-size: clamp(40px, 4vw, 52px);
   font-weight: 700;
-  letter-spacing: -0.02em;
-
-  margin-bottom: 8px;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 12px;
 }
 
 .about-role {
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: 500;
   color: var(--accent);
-
-  margin-bottom: 24px;
-
-  letter-spacing: .03em;
+  margin-bottom: 28px;
+  letter-spacing: .02em;
 }
 
 .about-text p {
-  font-size: 16px;
-  line-height: 1.8;
-
+  font-size: 18px;
+  line-height: 1.9;
   color: var(--muted);
-
-  margin-bottom: 18px;
+  margin-bottom: 24px;
 }
 
 .about-stats {
@@ -942,34 +1037,32 @@ section.alt {
   transition: color .3s ease;
 }
 
-.about-linkedin {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+.about-linkedin{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
 
-  gap: 10px;
+    height:54px;
+    padding:0 28px;
+    width:auto;
 
-  width: 240px;
-  height: 52px;
+    border-radius:999px;
 
-  border: 1px solid var(--border);
-  border-radius: 8px;
+    border:1px solid rgba(255,255,255,.10);
 
-  color: var(--fg);
-  text-decoration: none;
+    background:rgba(255,255,255,.03);
 
-  font-size: 14px;
-  font-weight: 500;
+    color:var(--fg);
+    text-decoration:none;
 
-  transition:
-    transform .3s cubic-bezier(.22,1,.36,1),
-    border-color .3s ease,
-    background .3s ease;
+    transition:.3s;
 }
 
-.about-linkedin:hover {
-  border-color: var(--accent);
-  transform: translateY(-2px);
+.about-linkedin:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+    transform:translateY(-2px);
 }
 
 .about-linkedin svg {
@@ -981,22 +1074,24 @@ section.alt {
 
 .cta-section {
   text-align: center;
-  padding: var(--section-y) var(--space);
+
+  padding-top: clamp(140px, 16vh, 220px);
+  padding-bottom: clamp(140px, 16vh, 220px);
+
+  padding-left: var(--space);
+  padding-right: var(--space);
 }
 
 .cta-statement {
   font-family: var(--font-display);
-  font-size: clamp(28px, 4vw, 48px);
+  font-size: clamp(36px, 4.8vw, 58px);
   font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
 
-  line-height: 1.15;
-  letter-spacing: -0.03em;
+  max-width: 820px;
 
-  margin-bottom: 16px;
-
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto 24px;
 }
 
 .cta-statement em {
@@ -1005,12 +1100,11 @@ section.alt {
 }
 
 .cta-sub {
-  font-size: clamp(15px, 1.4vw, 18px);
-  color: var(--muted);
+  max-width: 620px;
 
-  max-width: 600px;
+  margin: 0 auto 56px;
 
-  margin: 0 auto 40px;
+  line-height: 1.8;
 }
 
 .cta-actions {
@@ -1133,8 +1227,6 @@ section.alt {
   }
 /* ---------- Section Alignment ---------- */
 
-/* ---------- Section Alignment ---------- */
-
 .hero-content,
 #about,
 .cta-section {
@@ -1234,20 +1326,22 @@ nav{
     align-items:center;
     justify-content:center;
 
-    padding:8px 14px;
+    height:40px;
+    padding:0 18px;
 
     border-radius:999px;
 
     background:var(--accent);
     color:var(--accent-on);
 
-    font-size:12px;
+    font-size:13px;
     font-weight:600;
 
-    transition:.25s;
+    transition:.3s;
 }
 
 .nav-cta:hover{
+    background:var(--accent-hover);
     transform:translateY(-1px);
 }
   /* ---------- Hero ---------- */
@@ -1311,9 +1405,12 @@ nav{
   width: 100%;
 }
 
-.hero-actions .btn {
-  width: 100%;
-  max-width: 280px;
+.hero-actions .btn,
+.cta-actions .btn{
+    width:100%;
+    max-width:300px;
+    height:54px;
+    border-radius:999px;
 }
   /* ---------- Chaos ---------- */
 
@@ -1632,14 +1729,30 @@ nav{
 }
 
 .brands-summary{
+    display:flex;
     flex-direction:column;
     gap:28px;
     margin-top:48px;
 }
 
-.summary-stat span{
-    font-size:34px;
+.summary-stat{
+    text-align:center;
+    color:var(--muted);
 }
+
+.summary-stat span{
+    display:block;
+
+    font-family:var(--font-display);
+    font-size:34px;
+    font-weight:700;
+    line-height:1;
+
+    color:var(--accent);   /* Gold */
+
+    margin-bottom:8px;
+}
+
   /* ---------- About ---------- */
 
   .about-grid {
@@ -1681,10 +1794,33 @@ nav{
 line-height:1.75;  
 }
 
-  .about-linkedin {
-    display: inline-flex;
-    margin: 0 auto;
-  }
+.about-linkedin{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+
+    height:54px;
+    padding:0 28px;
+    width:auto;
+
+    border-radius:999px;
+
+    border:1px solid rgba(255,255,255,.10);
+
+    background:rgba(255,255,255,.03);
+
+    color:var(--fg);
+    text-decoration:none;
+
+    transition:.3s;
+}
+
+.about-linkedin:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+    transform:translateY(-2px);
+}
 
   /* ---------- CTA ---------- */
 
@@ -2203,18 +2339,11 @@ font-size:clamp(42px,11vw,58px);
         <div class="about-text">
 
           <p>
-            Helping founders and early-stage startups turn marketing complexity
-            into clear growth opportunities. Combining strategic thinking with
-            hands-on execution, the focus is on building marketing systems that
-            drive measurable business outcomes rather than short-term activity.
+            Helping founders and early-stage startups turn marketing complexity into clear growth opportunities. By combining strategic thinking with hands-on execution, the focus is on building marketing systems that drive measurable business outcomes rather than short-term activity.
           </p>
 
           <p>
-            Grounded in experience across high-growth D2C brands and
-            venture-backed startups, every engagement starts with understanding
-            the market, the customer, and the barriers to growth. The result is
-            a tailored strategy designed to create clarity, accelerate
-            decision-making, and enable sustainable scale.
+            Grounded in experience working with high-growth D2C brands and venture-backed startups, every engagement begins with understanding the market, the customer, and the barriers to growth. The result is a tailored strategy that brings clarity, accelerates decision-making, and enables sustainable growth.
           </p>
 
         </div>
