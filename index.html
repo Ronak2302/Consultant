@@ -673,79 +673,83 @@ section.alt {
   to { transform: translateX(-50%) translateY(-18px); }
 }
  /* ─── Framework ────────────────────────────────────────────────── */
+/* ---------- Framework ---------- */
 
-.framework-layout {
-    display: grid;
-    grid-template-columns: 260px 1fr;
-    gap: 120px;
-    margin-top: 64px;
-    align-items: center;
-}
-
-.framework-nav {
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-}
-
-.framework-step {
-    background: none;
-    border: none;
-    padding: 0;
-    margin: 0;
-
+#framework {
     text-align: left;
-
-    font-family: var(--font-display);
-    font-size: 42px;
-    font-weight: 700;
-    letter-spacing: -0.03em;
-
-    color: var(--meta);
-    cursor: pointer;
-
-    transition: color .3s ease;
-
-    appearance: none;
-    list-style: none;
 }
 
-.framework-step::before {
-    content: none;
-    display: none;
+#framework .section-inner {
+    padding-left: 24px;
+    padding-right: 24px;
 }
 
-.framework-step:hover {
-    color: var(--fg);
+#framework .section-title,
+#framework .section-label {
+    text-align: left;
 }
 
-.framework-step.active {
-    color: var(--accent);
+.framework-layout{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:28px;
+    margin-top:40px;
 }
 
-.framework-panel {
-    max-width: 700px;
+.framework-nav{
+    display:flex;
+    flex-wrap:wrap;
+    gap:18px;
+    width:100%;
+    justify-content:flex-start;
 }
 
-.framework-number {
-    font-size: 14px;
-    letter-spacing: .2em;
-    color: var(--accent);
-    margin-bottom: 20px;
+.framework-step{
+    background:none;
+    border:none;
+    padding:0;
+
+    flex:0 0 auto;
+
+    font-family:var(--font-display);
+    font-size:20px;
+    font-weight:700;
+    letter-spacing:-0.03em;
+
+    color:var(--meta);
+
+    text-align:left;
 }
 
-.framework-heading {
-    font-family: var(--font-display);
-    font-size: clamp(56px, 6vw, 88px);
-    font-weight: 700;
-    line-height: 1;
-    margin-bottom: 24px;
+.framework-step.active{
+    color:var(--accent);
 }
 
-.framework-description {
-    font-size: 20px;
-    line-height: 1.8;
-    color: var(--muted);
+.framework-panel{
+    width:100%;
+    text-align:left;
+}
+
+.framework-number{
+    font-size:13px;
+    letter-spacing:.18em;
+    margin-bottom:12px;
+}
+
+.framework-heading{
+    font-family:var(--font-display);
+    font-size:clamp(42px,10vw,56px);
+    line-height:.95;
+    margin-bottom:18px;
+    text-align:left;
+}
+
+.framework-description{
+    font-size:16px;
+    line-height:1.75;
+    text-align:left;
+    max-width:100%;
 }
  /* ─── Brands ────────────────────────────────────────────────── */
 
@@ -1250,26 +1254,26 @@ section.alt {
 }
   /* ---------- Chaos ---------- */
 
-  .chaos-layout {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
+ .chaos-layout{
+    gap:28px;
+}
 
   .chaos-box {
     width: 100%;
     max-width: 340px;
     height: 240px;
-    margin: 0 auto;
+    margin:0 auto 8px;
   }
 
   .chaos-content {
     text-align: center;
   }
 
-  .chaos-title {
-    font-size: 32px;
-    margin-bottom: 20px;
-  }
+  .chaos-title{
+    font-size:34px;
+    line-height:1.08;
+    margin-bottom:16px;
+}
 
   .chaos-text {
     font-size: 16px;
@@ -1433,8 +1437,9 @@ section.alt {
   }
 
   .about-text p {
-    font-size: 15px;
-  }
+  font-size:16px;
+line-height:1.75;  
+}
 
   .about-linkedin {
     display: inline-flex;
@@ -1457,13 +1462,22 @@ section.alt {
     width: 100%;
     max-width: 260px;
   }
+.cta-statement{
+    line-height:1.15;
+}
 
+.cta-sub{
+    margin-top:14px;
+    margin-bottom:32px;
+}
   /* ---------- Footer ---------- */
 
   .footer-inner {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap:12px;
+padding-top:32px;
+padding-bottom:32px;
     text-align: center;
   }
 
@@ -1510,8 +1524,8 @@ section.alt {
 
  /* ---------- Hero ---------- */
 
-.hero {
-  padding: 110px 20px 70px;
+.hero{
+    padding:120px 24px 48px;
 }
 
 .hero-content {
@@ -1523,8 +1537,8 @@ section.alt {
   letter-spacing: 0.08em;
 }
 
-.hero-headline {
-  font-size: clamp(34px, 10vw, 46px);
+.hero-headline{
+font-size:clamp(42px,11vw,58px);
 }
 
 .hero-followup {
@@ -1544,7 +1558,13 @@ section.alt {
     font-size: 16px;
 }
   /* ---------- Chaos ---------- */
+#chaos{
+    padding-top:24px;
+}
 
+.chaos-layout{
+    gap:28px;
+}
   .chaos-title {
     font-size: 30px;
   }
