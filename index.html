@@ -843,89 +843,160 @@ section.alt {
  /* ─── Brands ────────────────────────────────────────────────── */
 
 .brands-grid{
+
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:18px;
 
-    margin-top:64px;
+    gap:40px;
+
+    margin-top:72px;
 }
 
-.brand-pill{
+.brand-logo{
+
     display:flex;
     align-items:center;
     justify-content:center;
 
-    height:84px;
-
-    padding:20px;
-
-    border:1px solid var(--border);
-    border-radius:18px;
-
-    background:rgba(255,255,255,.02);
-
-    font-family:var(--font-display);
-    font-size:17px;
-    font-weight:600;
-    letter-spacing:-0.02em;
-
-    color:var(--fg);
+    height:90px;
 
     transition:
         transform .35s cubic-bezier(.22,1,.36,1),
-        border-color .35s ease,
-        background .35s ease,
-        box-shadow .35s ease;
+        opacity .35s ease;
 }
 
-.brand-pill:hover{
-    transform:translateY(-4px);
+.brand-logo:hover{
 
-    border-color:rgba(212,175,55,.45);
-
-    background:rgba(212,175,55,.05);
-
-    box-shadow:
-        0 16px 36px rgba(0,0,0,.22),
-        0 0 24px rgba(212,175,55,.08);
+    transform:translateY(-4px) scale(1.04);
 }
+
+.brand-logo img{
+
+    width:auto;
+    height:auto;
+
+    max-width:180px;
+    max-height:70px;
+
+    object-fit:contain;
+
+    opacity:.85;
+
+    transition:
+        opacity .35s ease,
+        transform .35s ease;
+}
+
+.brand-logo:hover img{
+
+    opacity:1;
+    transform:scale(1.03);
+}
+
+/* Individual logo sizing */
+
+.pidilite img{
+    max-width:190px;
+}
+
+.surf-excel img{
+    max-width:170px;
+}
+
+.simple-skincare img{
+    max-width:145px;
+}
+
+.love-beauty-and-planet img{
+    max-width:185px;
+    max-height:74px;
+}
+
+.universal-pictures img{
+    max-width:165px;
+}
+
+.nexa-music img{
+    max-width:165px;
+}
+
+.pillsbury img{
+    max-width:170px;
+}
+
+.betty-crocker img{
+    max-width:165px;
+}
+
+.haagen-dazs img{
+    max-width:165px;
+}
+
+.nature-valley img{
+    max-width:175px;
+}
+
+.center-fruit img{
+    max-width:155px;
+}
+
+.cream-centre img{
+    max-width:170px;
+}
+
+.ice-cream-works img{
+    max-width:175px;
+}
+
+.tata-motors img{
+    max-width:165px;
+}
+
+.vfs-global img{
+    max-width:170px;
+}
+
+.dalda img{
+    max-width:120px;
+}
+
+/* Summary */
 
 .brands-summary{
+
     display:flex;
     justify-content:center;
-    gap:72px;
+
+    gap:80px;
+
     margin-top:72px;
 }
 
 .summary-stat{
+
     text-align:center;
 }
 
-.summary-stat span {
-  display: block;
+.summary-stat span{
 
-  font-family: var(--font-display);
-  font-size: 42px;
-  font-weight: 700;
+    display:block;
 
-  color: var(--accent);
+    font-family:var(--font-display);
 
-  line-height: 1;
-  margin-bottom: 8px;
+    font-size:42px;
+    font-weight:700;
 
-  transition:
-    transform .4s cubic-bezier(.22,1,.36,1),
-    color .3s ease;
-}
+    color:var(--accent);
 
-.summary-stat:hover span {
-  color: var(--accent-hover);
-  transform: scale(1.05);
+    margin-bottom:10px;
 }
 
 .summary-stat p{
+
     color:var(--muted);
+    font-size:15px;
 }
+
  /* ─── About ─────────────────────────────────────────────────── */
 
 .about-grid {
@@ -1701,58 +1772,81 @@ nav{
 
 /* ---------- Brands ---------- */
 
-.brands-grid{
-    display:flex;
-    gap:14px;
+/* ───────────────────────────────────────────────
+   BRANDS - MOBILE
+─────────────────────────────────────────────── */
 
-    overflow-x:auto;
-    padding-bottom:10px;
-    margin-top:48px;
-
-    scroll-snap-type:x mandatory;
-    -webkit-overflow-scrolling:touch;
-    scrollbar-width:none;
-}
-
-.brands-grid::-webkit-scrollbar{
+.desktop-only{
     display:none;
 }
 
-.brand-pill{
-    flex:0 0 180px;
-
-    height:72px;
-
-    font-size:15px;
-
-    scroll-snap-align:center;
+.mobile-only{
+    display:block;
 }
+
+.brands-marquee{
+
+    overflow:hidden;
+
+    width:100%;
+
+    margin-top:56px;
+}
+
+.brands-track{
+
+    display:flex;
+    align-items:center;
+
+    gap:56px;
+
+    width:max-content;
+
+    animation:brandMarquee 28s linear infinite;
+}
+
+.brand-logo{
+
+    flex:0 0 auto;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    min-width:140px;
+    min-height:70px;
+}
+
+.brand-logo img{
+
+    width:auto;
+    height:auto;
+
+    max-width:130px;
+    max-height:58px;
+
+    object-fit:contain;
+
+    opacity:.9;
+}
+
+/* Summary */
 
 .brands-summary{
-    display:flex;
-    flex-direction:column;
-    gap:28px;
-    margin-top:48px;
-}
 
-.summary-stat{
-    text-align:center;
-    color:var(--muted);
+    flex-direction:column;
+
+    gap:30px;
+
+    margin-top:56px;
 }
 
 .summary-stat span{
-    display:block;
 
-    font-family:var(--font-display);
     font-size:34px;
-    font-weight:700;
-    line-height:1;
 
-    color:var(--accent);   /* Gold */
-
-    margin-bottom:8px;
+    color:var(--accent);
 }
-
   /* ---------- About ---------- */
 
   .about-grid {
@@ -2026,6 +2120,80 @@ font-size:clamp(42px,11vw,58px);
     font-size:15px;
     line-height:1.75;
 }
+
+/* ---------- Brands ---------- */
+
+.desktop-only{
+    display:none;
+}
+
+.mobile-only{
+    display:block;
+}
+
+.brands-marquee{
+
+    overflow:hidden;
+
+    width:100%;
+
+    margin-top:56px;
+}
+
+.brands-track{
+
+    display:flex;
+    align-items:center;
+
+    gap:56px;
+
+    width:max-content;
+
+    animation:brandMarquee 28s linear infinite;
+}
+
+.brand-logo{
+
+    flex:0 0 auto;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    min-width:140px;
+    min-height:70px;
+}
+
+.brand-logo img{
+
+    width:auto;
+    height:auto;
+
+    max-width:130px;
+    max-height:58px;
+
+    object-fit:contain;
+
+    opacity:.9;
+}
+
+/* Summary */
+
+.brands-summary{
+
+    flex-direction:column;
+
+    gap:30px;
+
+    margin-top:56px;
+}
+
+.summary-stat span{
+
+    font-size:34px;
+
+    color:var(--accent);
+}
   /* ---------- About ---------- */
 
   .portrait-img {
@@ -2042,6 +2210,17 @@ font-size:clamp(42px,11vw,58px);
   .footer-social {
     font-size: 13px;
   }
+}
+@keyframes brandScroll{
+
+    from{
+        transform:translateX(0);
+    }
+
+    to{
+        transform:translateX(-50%);
+    }
+
 }
   </style>
 </head>
@@ -2243,63 +2422,125 @@ font-size:clamp(42px,11vw,58px);
 
 <!-- ═══ Brands ═══════════════════════════════════════════════════ -->
 
-<section class="alt" id="brands">
+<section id="brands">
 
-  <div class="section-inner">
+    <div class="section-inner">
 
-    <p class="section-label reveal">
-      Brands I've Worked With
-    </p>
+        <p class="section-label reveal">
+            BRANDS
+        </p>
 
-    <h2 class="section-title reveal reveal-delay-1">
-      Work That Moved the Needle
-    </h2>
+        <h2 class="section-title reveal reveal-delay-1">
+            Experience across leading global and Indian brands.
+        </h2>
 
-    <div class="brands-grid">
+        <p class="section-desc reveal reveal-delay-2">
+            Working across FMCG, healthcare, automotive, entertainment,
+            government services and industrial sectors—building campaigns,
+            digital experiences and marketing systems that deliver measurable
+            business impact.
+        </p>
 
-            <div class="brand-pill">Pidilite</div>
-            <div class="brand-pill">Surf Excel</div>
-            <div class="brand-pill">Simple Skincare</div>
-            <div class="brand-pill">Love Beauty &amp; Planet</div>
+        <!-- ==========================================
+             DESKTOP GRID
+        =========================================== -->
 
-            <div class="brand-pill">Universal Pictures</div>
-            <div class="brand-pill">Nexa Music</div>
-            <div class="brand-pill">Pillsbury</div>
-            <div class="brand-pill">Betty Crocker</div>
+        <div class="brands-grid desktop-only">
 
-            <div class="brand-pill">Häagen-Dazs</div>
-            <div class="brand-pill">Nature Valley</div>
-            <div class="brand-pill">Center Fruit</div>
-            <div class="brand-pill">Cream Centre</div>
+            <div class="brand-logo pidilite"><img src="logos/pidilite.png" alt="Pidilite"></div>
+            <div class="brand-logo surf-excel"><img src="logos/surf-excel.png" alt="Surf Excel"></div>
+            <div class="brand-logo simple-skincare"><img src="logos/simple-skincare.png" alt="Simple Skincare"></div>
+            <div class="brand-logo love-beauty-and-planet"><img src="logos/love-beauty-and-planet.png" alt="Love Beauty & Planet"></div>
 
-            <div class="brand-pill">Ice Cream Works</div>
-            <div class="brand-pill">Tata Motors</div>
-            <div class="brand-pill">VFS Global</div>
-            <div class="brand-pill">Dalda</div>
+            <div class="brand-logo universal-pictures"><img src="logos/universal-pictures.png" alt="Universal Pictures"></div>
+            <div class="brand-logo nexa-music"><img src="logos/nexa-music.png" alt="Nexa Music"></div>
+            <div class="brand-logo pillsbury"><img src="logos/pillsbury.png" alt="Pillsbury"></div>
+            <div class="brand-logo betty-crocker"><img src="logos/betty-crocker.png" alt="Betty Crocker"></div>
+
+            <div class="brand-logo haagen-dazs"><img src="logos/haagen-dazs.png" alt="Haagen Dazs"></div>
+            <div class="brand-logo nature-valley"><img src="logos/nature-valley.png" alt="Nature Valley"></div>
+            <div class="brand-logo center-fruit"><img src="logos/center-fruit.png" alt="Center Fruit"></div>
+            <div class="brand-logo cream-centre"><img src="logos/cream-centre.png" alt="Cream Centre"></div>
+
+            <div class="brand-logo ice-cream-works"><img src="logos/ice-cream-works.png" alt="Ice Cream Works"></div>
+            <div class="brand-logo tata-motors"><img src="logos/tata-motors.png" alt="Tata Motors"></div>
+            <div class="brand-logo vfs-global"><img src="logos/vfs-global.png" alt="VFS Global"></div>
+            <div class="brand-logo dalda"><img src="logos/dalda.png" alt="Dalda"></div>
+
+        </div>
+
+        <!-- ==========================================
+             MOBILE MARQUEE
+        =========================================== -->
+
+        <div class="brands-marquee mobile-only">
+
+            <div class="brands-track">
+
+                <!-- ORIGINAL -->
+
+                <div class="brand-logo pidilite"><img src="logos/pidilite.png" alt="Pidilite"></div>
+                <div class="brand-logo surf-excel"><img src="logos/surf-excel.png" alt="Surf Excel"></div>
+                <div class="brand-logo simple-skincare"><img src="logos/simple-skincare.png" alt="Simple Skincare"></div>
+                <div class="brand-logo love-beauty-and-planet"><img src="logos/love-beauty-and-planet.png" alt="Love Beauty & Planet"></div>
+                <div class="brand-logo universal-pictures"><img src="logos/universal-pictures.png" alt="Universal Pictures"></div>
+                <div class="brand-logo nexa-music"><img src="logos/nexa-music.png" alt="Nexa Music"></div>
+                <div class="brand-logo pillsbury"><img src="logos/pillsbury.png" alt="Pillsbury"></div>
+                <div class="brand-logo betty-crocker"><img src="logos/betty-crocker.png" alt="Betty Crocker"></div>
+                <div class="brand-logo haagen-dazs"><img src="logos/haagen-dazs.png" alt="Haagen Dazs"></div>
+                <div class="brand-logo nature-valley"><img src="logos/nature-valley.png" alt="Nature Valley"></div>
+                <div class="brand-logo center-fruit"><img src="logos/center-fruit.png" alt="Center Fruit"></div>
+                <div class="brand-logo cream-centre"><img src="logos/cream-centre.png" alt="Cream Centre"></div>
+                <div class="brand-logo ice-cream-works"><img src="logos/ice-cream-works.png" alt="Ice Cream Works"></div>
+                <div class="brand-logo tata-motors"><img src="logos/tata-motors.png" alt="Tata Motors"></div>
+                <div class="brand-logo vfs-global"><img src="logos/vfs-global.png" alt="VFS Global"></div>
+                <div class="brand-logo dalda"><img src="logos/dalda.png" alt="Dalda"></div>
+
+                <!-- DUPLICATE FOR LOOP -->
+
+                <div class="brand-logo pidilite"><img src="logos/pidilite.png" alt=""></div>
+                <div class="brand-logo surf-excel"><img src="logos/surf-excel.png" alt=""></div>
+                <div class="brand-logo simple-skincare"><img src="logos/simple-skincare.png" alt=""></div>
+                <div class="brand-logo love-beauty-and-planet"><img src="logos/love-beauty-and-planet.png" alt=""></div>
+                <div class="brand-logo universal-pictures"><img src="logos/universal-pictures.png" alt=""></div>
+                <div class="brand-logo nexa-music"><img src="logos/nexa-music.png" alt=""></div>
+                <div class="brand-logo pillsbury"><img src="logos/pillsbury.png" alt=""></div>
+                <div class="brand-logo betty-crocker"><img src="logos/betty-crocker.png" alt=""></div>
+                <div class="brand-logo haagen-dazs"><img src="logos/haagen-dazs.png" alt=""></div>
+                <div class="brand-logo nature-valley"><img src="logos/nature-valley.png" alt=""></div>
+                <div class="brand-logo center-fruit"><img src="logos/center-fruit.png" alt=""></div>
+                <div class="brand-logo cream-centre"><img src="logos/cream-centre.png" alt=""></div>
+                <div class="brand-logo ice-cream-works"><img src="logos/ice-cream-works.png" alt=""></div>
+                <div class="brand-logo tata-motors"><img src="logos/tata-motors.png" alt=""></div>
+                <div class="brand-logo vfs-global"><img src="logos/vfs-global.png" alt=""></div>
+                <div class="brand-logo dalda"><img src="logos/dalda.png" alt=""></div>
+
+            </div>
+
+        </div>
+
+        <!-- Stats -->
+
+        <div class="brands-summary reveal reveal-delay-3">
+
+            <div class="summary-stat">
+                <span>40+</span>
+                <p>Brands</p>
+            </div>
+
+            <div class="summary-stat">
+                <span>100+</span>
+                <p>Campaigns</p>
+            </div>
+
+            <div class="summary-stat">
+                <span>8+</span>
+                <p>Years Experience</p>
+            </div>
 
         </div>
 
     </div>
-    <div class="brands-summary reveal reveal-delay-3">
-
-      <div class="summary-stat">
-        <span>40+</span>
-        Brands
-      </div>
-
-      <div class="summary-stat">
-        <span>100+</span>
-        Campaigns
-      </div>
-
-      <div class="summary-stat">
-        <span>8+</span>
-        Years Experience
-      </div>
-
-    </div>
-
-  </div>
 
 </section>
 
@@ -2337,11 +2578,11 @@ font-size:clamp(42px,11vw,58px);
         <div class="about-text">
 
           <p>
-            Helping founders and early-stage startups turn marketing complexity into clear growth opportunities. By combining strategic thinking with hands-on execution, the focus is on building marketing systems that drive measurable business outcomes rather than short-term activity.
+            Marketing should create business momentum, not just marketing activity. By combining strategic thinking with hands-on execution, every engagement is designed to build marketing systems that deliver measurable outcomes rather than short-term wins.
           </p>
 
           <p>
-            Grounded in experience working with high-growth D2C brands and venture-backed startups, every engagement begins with understanding the market, the customer, and the barriers to growth. The result is a tailored strategy that brings clarity, accelerates decision-making, and enables sustainable growth.
+            Grounded in experience working with high-growth D2C brands and venture-backed startups, each engagement begins with understanding the market, the customer, and the barriers to growth. The result is a tailored strategy that brings clarity, accelerates decision-making, and enables sustainable growth.
           </p>
 
         </div>
@@ -2372,7 +2613,7 @@ font-size:clamp(42px,11vw,58px);
   </div>
 
 </section>
-
+ 
 <!-- ═══ CTA ═══════════════════════════════════════════════════ -->
 
 <section class="cta-section" id="ctaFinal">
