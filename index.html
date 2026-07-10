@@ -1785,12 +1785,9 @@ nav{
 }
 
 .brands-marquee{
-
     overflow:hidden;
-
     width:100%;
-
-    margin-top:56px;
+    margin-top:28px;   /* was 56px */
 }
 
 .brands-track{
@@ -2132,12 +2129,7 @@ font-size:clamp(42px,11vw,58px);
 }
 
 .brands-marquee{
-
-    overflow:hidden;
-
-    width:100%;
-
-    margin-top:56px;
+    margin-top:20px;   /* was 44px */
 }
 
 .brands-track{
@@ -2211,14 +2203,14 @@ font-size:clamp(42px,11vw,58px);
     font-size: 13px;
   }
 }
-@keyframes brandScroll{
+@keyframes brandMarquee{
 
     from{
-        transform:translateX(0);
+        transform:translateX(-50%);
     }
 
     to{
-        transform:translateX(-50%);
+        transform:translateX(0);
     }
 
 }
@@ -2427,19 +2419,12 @@ font-size:clamp(42px,11vw,58px);
     <div class="section-inner">
 
         <p class="section-label reveal">
-            BRANDS
+          BRANDS I'VE WORKED WITH
         </p>
 
         <h2 class="section-title reveal reveal-delay-1">
-            Experience across leading global and Indian brands.
+            Experience across leading brands.
         </h2>
-
-        <p class="section-desc reveal reveal-delay-2">
-            Working across FMCG, healthcare, automotive, entertainment,
-            government services and industrial sectors—building campaigns,
-            digital experiences and marketing systems that deliver measurable
-            business impact.
-        </p>
 
         <!-- ==========================================
              DESKTOP GRID
@@ -2522,6 +2507,11 @@ font-size:clamp(42px,11vw,58px);
         <!-- Stats -->
 
         <div class="brands-summary reveal reveal-delay-3">
+          
+            <div class="summary-stat">
+                <span>8+</span>
+                <p>Years Experience</p>
+            </div>
 
             <div class="summary-stat">
                 <span>40+</span>
@@ -2533,10 +2523,7 @@ font-size:clamp(42px,11vw,58px);
                 <p>Campaigns</p>
             </div>
 
-            <div class="summary-stat">
-                <span>8+</span>
-                <p>Years Experience</p>
-            </div>
+            
 
         </div>
 
