@@ -1772,10 +1772,6 @@ nav{
 
 /* ---------- Brands ---------- */
 
-/* ───────────────────────────────────────────────
-   BRANDS - MOBILE
-─────────────────────────────────────────────── */
-
 .desktop-only{
     display:none;
 }
@@ -1784,23 +1780,111 @@ nav{
     display:block;
 }
 
+/* Marquee */
+
 .brands-marquee{
+
+    position:relative;
+
+    display:flex;
+
     overflow:hidden;
+
     width:100%;
-    margin-top:28px;   /* was 56px */
+
+    margin-top:24px;
+
+    mask-image:linear-gradient(
+        to right,
+        transparent,
+        black 8%,
+        black 92%,
+        transparent
+    );
+
+    -webkit-mask-image:linear-gradient(
+        to right,
+        transparent,
+        black 8%,
+        black 92%,
+        transparent
+    );
 }
+
+/* Edge Fade (Apple Style) */
+
+.brands-marquee::before,
+.brands-marquee::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    bottom:0;
+
+    width:60px;
+
+    z-index:3;
+
+    pointer-events:none;
+}
+
+.brands-marquee::before{
+
+    left:0;
+
+    background:linear-gradient(
+        to right,
+        var(--bg),
+        transparent
+    );
+}
+
+.brands-marquee::after{
+
+    right:0;
+
+    background:linear-gradient(
+        to left,
+        var(--bg),
+        transparent
+    );
+}
+
+/* Logo Track */
 
 .brands-track{
 
     display:flex;
     align-items:center;
 
-    gap:56px;
+    flex-shrink:0;
 
-    width:max-content;
+    gap:52px;
 
-    animation:brandMarquee 28s linear infinite;
+    padding-right:52px;
+
+    animation:brandMarqueeLTR 32s linear infinite;
+
+    will-change:transform;
 }
+
+/* Second track starts after first */
+
+.brands-track:last-child{
+
+    animation-delay:-16s;
+}
+
+/* Pause when touched */
+
+.brands-marquee:hover .brands-track{
+
+    animation-play-state:paused;
+}
+
+/* Logo */
 
 .brand-logo{
 
@@ -1811,7 +1895,7 @@ nav{
     justify-content:center;
 
     min-width:140px;
-    min-height:70px;
+    height:70px;
 }
 
 .brand-logo img{
@@ -1819,23 +1903,41 @@ nav{
     width:auto;
     height:auto;
 
-    max-width:130px;
-    max-height:58px;
+    max-width:135px;
+    max-height:60px;
 
     object-fit:contain;
 
-    opacity:.9;
+    opacity:.85;
+
+    transition:
+        opacity .35s ease,
+        transform .35s ease;
+}
+
+.brand-logo:hover img{
+
+    opacity:1;
+
+    transform:scale(1.04);
 }
 
 /* Summary */
 
 .brands-summary{
 
+    display:flex;
+
     flex-direction:column;
 
-    gap:30px;
+    gap:28px;
 
-    margin-top:56px;
+    margin-top:48px;
+}
+
+.summary-stat{
+
+    text-align:center;
 }
 
 .summary-stat span{
@@ -1844,6 +1946,7 @@ nav{
 
     color:var(--accent);
 }
+
   /* ---------- About ---------- */
 
   .about-grid {
@@ -2128,21 +2231,102 @@ font-size:clamp(42px,11vw,58px);
     display:block;
 }
 
+/* Marquee */
+
 .brands-marquee{
-    margin-top:20px;   /* was 44px */
+
+    position:relative;
+
+    display:flex;
+
+    overflow:hidden;
+
+    width:100%;
+
+    margin-top:18px;
+
+    mask-image:linear-gradient(
+        to right,
+        transparent,
+        black 8%,
+        black 92%,
+        transparent
+    );
+
+    -webkit-mask-image:linear-gradient(
+        to right,
+        transparent,
+        black 8%,
+        black 92%,
+        transparent
+    );
 }
+
+/* Edge Fade */
+
+.brands-marquee::before,
+.brands-marquee::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    bottom:0;
+
+    width:42px;
+
+    z-index:3;
+
+    pointer-events:none;
+}
+
+.brands-marquee::before{
+
+    left:0;
+
+    background:linear-gradient(
+        to right,
+        var(--bg),
+        transparent
+    );
+}
+
+.brands-marquee::after{
+
+    right:0;
+
+    background:linear-gradient(
+        to left,
+        var(--bg),
+        transparent
+    );
+}
+
+/* Track */
 
 .brands-track{
 
     display:flex;
     align-items:center;
 
-    gap:56px;
+    flex-shrink:0;
 
-    width:max-content;
+    gap:36px;
 
-    animation:brandMarquee 28s linear infinite;
+    padding-right:36px;
+
+    animation:brandMarqueeLTR 26s linear infinite;
+
+    will-change:transform;
 }
+
+.brands-track:last-child{
+
+    animation-delay:-13s;
+}
+
+/* Logo */
 
 .brand-logo{
 
@@ -2152,8 +2336,8 @@ font-size:clamp(42px,11vw,58px);
     align-items:center;
     justify-content:center;
 
-    min-width:140px;
-    min-height:70px;
+    min-width:110px;
+    height:56px;
 }
 
 .brand-logo img{
@@ -2161,31 +2345,46 @@ font-size:clamp(42px,11vw,58px);
     width:auto;
     height:auto;
 
-    max-width:130px;
-    max-height:58px;
+    max-width:100px;
+    max-height:42px;
 
     object-fit:contain;
 
-    opacity:.9;
+    opacity:.85;
 }
 
 /* Summary */
 
 .brands-summary{
 
+    display:flex;
+
     flex-direction:column;
 
-    gap:30px;
+    gap:24px;
 
-    margin-top:56px;
+    margin-top:42px;
+}
+
+.summary-stat{
+
+    text-align:center;
 }
 
 .summary-stat span{
 
-    font-size:34px;
+    font-size:32px;
 
     color:var(--accent);
 }
+
+.summary-stat p{
+
+    font-size:14px;
+
+    color:var(--muted);
+}
+
   /* ---------- About ---------- */
 
   .portrait-img {
@@ -2203,14 +2402,14 @@ font-size:clamp(42px,11vw,58px);
     font-size: 13px;
   }
 }
-@keyframes brandMarquee{
+@keyframes brandMarqueeLTR {
 
-    from{
-        transform:translateX(-50%);
+    0% {
+        transform: translateX(-100%);
     }
 
-    to{
-        transform:translateX(0);
+    100% {
+        transform: translateX(100%);
     }
 
 }
@@ -2460,54 +2659,58 @@ font-size:clamp(42px,11vw,58px);
 
         <div class="brands-marquee mobile-only">
 
-            <div class="brands-track">
+    <div class="brands-track">
 
-                <!-- ORIGINAL -->
+        <!-- Set 1 -->
 
-                <div class="brand-logo pidilite"><img src="logos/pidilite.png" alt="Pidilite"></div>
-                <div class="brand-logo surf-excel"><img src="logos/surf-excel.png" alt="Surf Excel"></div>
-                <div class="brand-logo simple-skincare"><img src="logos/simple-skincare.png" alt="Simple Skincare"></div>
-                <div class="brand-logo love-beauty-and-planet"><img src="logos/love-beauty-and-planet.png" alt="Love Beauty & Planet"></div>
-                <div class="brand-logo universal-pictures"><img src="logos/universal-pictures.png" alt="Universal Pictures"></div>
-                <div class="brand-logo nexa-music"><img src="logos/nexa-music.png" alt="Nexa Music"></div>
-                <div class="brand-logo pillsbury"><img src="logos/pillsbury.png" alt="Pillsbury"></div>
-                <div class="brand-logo betty-crocker"><img src="logos/betty-crocker.png" alt="Betty Crocker"></div>
-                <div class="brand-logo haagen-dazs"><img src="logos/haagen-dazs.png" alt="Haagen Dazs"></div>
-                <div class="brand-logo nature-valley"><img src="logos/nature-valley.png" alt="Nature Valley"></div>
-                <div class="brand-logo center-fruit"><img src="logos/center-fruit.png" alt="Center Fruit"></div>
-                <div class="brand-logo cream-centre"><img src="logos/cream-centre.png" alt="Cream Centre"></div>
-                <div class="brand-logo ice-cream-works"><img src="logos/ice-cream-works.png" alt="Ice Cream Works"></div>
-                <div class="brand-logo tata-motors"><img src="logos/tata-motors.png" alt="Tata Motors"></div>
-                <div class="brand-logo vfs-global"><img src="logos/vfs-global.png" alt="VFS Global"></div>
-                <div class="brand-logo dalda"><img src="logos/dalda.png" alt="Dalda"></div>
+        <div class="brand-logo pidilite"><img src="logos/pidilite.png" alt="Pidilite"></div>
+        <div class="brand-logo surf-excel"><img src="logos/surf-excel.png" alt="Surf Excel"></div>
+        <div class="brand-logo simple-skincare"><img src="logos/simple-skincare.png" alt="Simple Skincare"></div>
+        <div class="brand-logo love-beauty-and-planet"><img src="logos/love-beauty-and-planet.png" alt="Love Beauty & Planet"></div>
+        <div class="brand-logo universal-pictures"><img src="logos/universal-pictures.png" alt="Universal Pictures"></div>
+        <div class="brand-logo nexa-music"><img src="logos/nexa-music.png" alt="Nexa Music"></div>
+        <div class="brand-logo pillsbury"><img src="logos/pillsbury.png" alt="Pillsbury"></div>
+        <div class="brand-logo betty-crocker"><img src="logos/betty-crocker.png" alt="Betty Crocker"></div>
+        <div class="brand-logo haagen-dazs"><img src="logos/haagen-dazs.png" alt="Haagen Dazs"></div>
+        <div class="brand-logo nature-valley"><img src="logos/nature-valley.png" alt="Nature Valley"></div>
+        <div class="brand-logo center-fruit"><img src="logos/center-fruit.png" alt="Center Fruit"></div>
+        <div class="brand-logo cream-centre"><img src="logos/cream-centre.png" alt="Cream Centre"></div>
+        <div class="brand-logo ice-cream-works"><img src="logos/ice-cream-works.png" alt="Ice Cream Works"></div>
+        <div class="brand-logo tata-motors"><img src="logos/tata-motors.png" alt="Tata Motors"></div>
+        <div class="brand-logo vfs-global"><img src="logos/vfs-global.png" alt="VFS Global"></div>
+        <div class="brand-logo dalda"><img src="logos/dalda.png" alt="Dalda"></div>
 
-                <!-- DUPLICATE FOR LOOP -->
+    </div>
 
-                <div class="brand-logo pidilite"><img src="logos/pidilite.png" alt=""></div>
-                <div class="brand-logo surf-excel"><img src="logos/surf-excel.png" alt=""></div>
-                <div class="brand-logo simple-skincare"><img src="logos/simple-skincare.png" alt=""></div>
-                <div class="brand-logo love-beauty-and-planet"><img src="logos/love-beauty-and-planet.png" alt=""></div>
-                <div class="brand-logo universal-pictures"><img src="logos/universal-pictures.png" alt=""></div>
-                <div class="brand-logo nexa-music"><img src="logos/nexa-music.png" alt=""></div>
-                <div class="brand-logo pillsbury"><img src="logos/pillsbury.png" alt=""></div>
-                <div class="brand-logo betty-crocker"><img src="logos/betty-crocker.png" alt=""></div>
-                <div class="brand-logo haagen-dazs"><img src="logos/haagen-dazs.png" alt=""></div>
-                <div class="brand-logo nature-valley"><img src="logos/nature-valley.png" alt=""></div>
-                <div class="brand-logo center-fruit"><img src="logos/center-fruit.png" alt=""></div>
-                <div class="brand-logo cream-centre"><img src="logos/cream-centre.png" alt=""></div>
-                <div class="brand-logo ice-cream-works"><img src="logos/ice-cream-works.png" alt=""></div>
-                <div class="brand-logo tata-motors"><img src="logos/tata-motors.png" alt=""></div>
-                <div class="brand-logo vfs-global"><img src="logos/vfs-global.png" alt=""></div>
-                <div class="brand-logo dalda"><img src="logos/dalda.png" alt=""></div>
+    <div class="brands-track" aria-hidden="true">
 
-            </div>
+        <!-- Duplicate Set -->
 
-        </div>
+        <div class="brand-logo pidilite"><img src="logos/pidilite.png" alt=""></div>
+        <div class="brand-logo surf-excel"><img src="logos/surf-excel.png" alt=""></div>
+        <div class="brand-logo simple-skincare"><img src="logos/simple-skincare.png" alt=""></div>
+        <div class="brand-logo love-beauty-and-planet"><img src="logos/love-beauty-and-planet.png" alt=""></div>
+        <div class="brand-logo universal-pictures"><img src="logos/universal-pictures.png" alt=""></div>
+        <div class="brand-logo nexa-music"><img src="logos/nexa-music.png" alt=""></div>
+        <div class="brand-logo pillsbury"><img src="logos/pillsbury.png" alt=""></div>
+        <div class="brand-logo betty-crocker"><img src="logos/betty-crocker.png" alt=""></div>
+        <div class="brand-logo haagen-dazs"><img src="logos/haagen-dazs.png" alt=""></div>
+        <div class="brand-logo nature-valley"><img src="logos/nature-valley.png" alt=""></div>
+        <div class="brand-logo center-fruit"><img src="logos/center-fruit.png" alt=""></div>
+        <div class="brand-logo cream-centre"><img src="logos/cream-centre.png" alt=""></div>
+        <div class="brand-logo ice-cream-works"><img src="logos/ice-cream-works.png" alt=""></div>
+        <div class="brand-logo tata-motors"><img src="logos/tata-motors.png" alt=""></div>
+        <div class="brand-logo vfs-global"><img src="logos/vfs-global.png" alt=""></div>
+        <div class="brand-logo dalda"><img src="logos/dalda.png" alt=""></div>
+
+    </div>
+
+</div>
 
         <!-- Stats -->
 
         <div class="brands-summary reveal reveal-delay-3">
-          
+
             <div class="summary-stat">
                 <span>8+</span>
                 <p>Years Experience</p>
